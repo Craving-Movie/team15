@@ -56,9 +56,12 @@ function loadComments() {
     let listItem = document.createElement("div");
     listItem.className = "commentBox";
     listItem.innerHTML = `
-        <p class="commentUser" id="commentUser">${comment.user}</p>
-          <p class="commentText" id="commentText">${comment.comment}</p>
-          <p class="commentTime" id="commentTime">${comment.time}</p>`;
+    <p class="commentText" id="commentText">${comment.comment}</p>
+    <div>
+    <p class="commentUser" id="commentUser">${comment.user}</p>
+    <p class="commentTime" id="commentTime">${comment.time}</p>
+    </div>
+    `;
 
     commentList.appendChild(listItem);
   }

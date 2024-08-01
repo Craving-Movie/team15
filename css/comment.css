@@ -5,13 +5,13 @@
 }
 
 .comment {
-  margin: 5vh 5vh 5vh 5vh;
+  margin: 5vh 10vh 5vh 10vh;
 }
 
 .commentBody {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, 400px);
+  gap: 50px;
   justify-content: center;
 }
 
@@ -19,19 +19,38 @@
   justify-self: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 120px;
-  width: 400px;
+  width: 350px;
   border-radius: 10px;
   border: 1px solid #ff7211;
-  padding: 10px;
+  padding: 15px;
+  position: relative;
 }
 
 .commentBox p {
+  position: absolute;
   margin: 0;
   padding: 0;
 }
 
+.commentText {
+  top: 30px;
+  font-size: 20px;
+}
+
+.commentTime {
+  font-size: 12px;
+  bottom: 5px;
+  color: #616161;
+}
+
+.commentUser {
+  font-size: 15px;
+  bottom: 20px;
+  color: #616161;
+}
+
+/* 댓글 입력 부분 */
 .writeBox {
   display: flex;
   flex-direction: column;
@@ -81,10 +100,33 @@
 }
 
 #commnetBtn {
-  width: 100px;
-  height: 65px;
+  width: 120px;
+  height: 35px;
   border-radius: 10px;
   border: none;
   background-color: #0da9b3;
   color: white;
+}
+
+.selectStar {
+  border-radius: 10px;
+  height: 28px;
+  width: 120px;
+  margin-bottom: 5px;
+  background-color: #0da9b3;
+  border: none;
+  color: white;
+  appearance: none;
+  padding-left: 15px;
+  position: relative;
+}
+
+.starArrow {
+  position: absolute;
+  right: 10px;
+  top: -2%;
+}
+
+.selectStar:focus {
+  outline: none;
 }
