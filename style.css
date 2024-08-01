@@ -87,6 +87,7 @@ header {
   /* overflow-x: scroll; */
   padding-left: 90px;
   position: relative;
+  transition: 0.5s ease-out;
 }
 
 .Container::-webkit-scrollbar,
@@ -140,4 +141,8 @@ header {
   padding: 10px 20px;
   margin: 0 10px;
   cursor: pointer;
+}
+
+.moviePoster1.animated {
+  transition: 0.5s ease-out;
 }
