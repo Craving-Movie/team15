@@ -5,7 +5,7 @@
 }
 
 .comment {
-  margin: 0 5vh;
+  margin: 5vh 5vh 5vh 5vh;
 }
 
 .commentBody {
@@ -30,4 +30,61 @@
 .commentBox p {
   margin: 0;
   padding: 0;
+}
+
+.writeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#writeBtn {
+  border-radius: 20px;
+  width: 150px;
+  height: 40px;
+  background-color: #0da9b3;
+  border: none;
+  color: white;
+}
+
+.commnetWrite {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: 70px;
+  align-items: center;
+}
+
+.writeBox input {
+  border-radius: 10px;
+  border: 1px solid #0da9b3;
+  background-color: transparent;
+  text-align: center;
+}
+
+.writeBox input:focus {
+  outline: none;
+}
+
+#inputUser,
+#inputPw {
+  width: 150px;
+  height: 27px;
+  margin: 3px 0;
+}
+
+#inputComment {
+  width: 500px;
+  height: 65px;
+  margin: 0 20px;
+  flex-wrap: wrap;
+}
+
+#commnetBtn {
+  width: 100px;
+  height: 65px;
+  border-radius: 10px;
+  border: none;
+  background-color: #0da9b3;
+  color: white;
 }

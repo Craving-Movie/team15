@@ -75,11 +75,24 @@
 
     <!-- 댓글 기능 테스트 -->
     <div class="comment">
-      <div class="commentBody">
-        <div class="commentBox">
-          <p class="commentUser">닉네임</p>
-          <p class="commentText">댓글내용블라블라</p>
-          <p class="commentTime">24.08.01</p>
+      <div class="writeBox">
+        <div>
+          <button id="writeBtn">리뷰 남기기</button>
+        </div>
+        <div class="commnetWrite" id="commnetWrite">
+          <div style="display: flex; flex-direction: column">
+            <input id="inputUser" type="text" placeholder="닉네임" />
+            <input id="inputPw" type="password" placeholder="비밀번호" />
+          </div>
+          <input id="inputComment" type="text" placeholder="한 줄 리뷰를 작성해주세요! (최대 50자)" maxlength="50" />
+          <button id="commnetBtn">등록</button>
+        </div>
+      </div>
+      <div class="commentBody" id="commentBody">
+        <div class="commentBox" id="commentBox">
+          <p class="commentUser" id="commentUser">닉네임</p>
+          <p class="commentText" id="commentText">댓글내용블라블라</p>
+          <p class="commentTime" id="commentTime">24.08.01</p>
         </div>
         <div class="commentBox">
           <p class="commentUser">닉네임</p>
@@ -101,5 +114,6 @@
 
     <button id="top-btn" onclick="toTop()">▲<br />Top</button>
     <script src="./movies.js"></script>
+    <script src="./comment.js"></script>
   </body>
 </html>
