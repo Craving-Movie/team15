@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Box</title>
     <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/comment.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -37,7 +38,7 @@
     <div class="search">
       <input type="text" id="search-input" onkeyup="enterkey()" />
       <button id="search-button" class="search-button">
-        <svg width="40px" height="auto" viewBox="0 0 58 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="40px" viewBox="0 0 58 57" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M30.4255 3.70679C20.0133 3.70679 7.95417 14.9149 4.10072 24.0799C-0.814613 35.7704 12.0113 45.9603 21.269 49.7179C31.6028 53.9122 41.2318 49.3278 47.1932 40.2753C54.214 29.6141 51.7222 15.1636 40.8409 8.51392C36.6743 5.96764 29.9455 6.79708 25.275 6.79708"
             stroke="#fbbc14"
@@ -70,6 +71,32 @@
       <p class="categoryTitle">현재 상영작</p>
       <!-- 슬라이더 부분 -->
       <div id="nowContainer" class="Container"></div>
+    </div>
+
+    <!-- 댓글 기능 테스트 -->
+    <div class="comment">
+      <div class="commentBody">
+        <div class="commentBox">
+          <p class="commentUser">닉네임</p>
+          <p class="commentText">댓글내용블라블라</p>
+          <p class="commentTime">24.08.01</p>
+        </div>
+        <div class="commentBox">
+          <p class="commentUser">닉네임</p>
+          <p class="commentText">댓글내용블라블라</p>
+          <p class="commentTime">24.08.01</p>
+        </div>
+        <div class="commentBox">
+          <p class="commentUser">닉네임</p>
+          <p class="commentText">댓글내용블라블라</p>
+          <p class="commentTime">24.08.01</p>
+        </div>
+        <div class="commentBox">
+          <p class="commentUser">닉네임</p>
+          <p class="commentText">댓글내용블라블라</p>
+          <p class="commentTime">24.08.01</p>
+        </div>
+      </div>
     </div>
 
     <button id="top-btn" onclick="toTop()">▲<br />Top</button>

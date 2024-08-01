@@ -1,0 +1,33 @@
+* {
+  font-family: "SUIT", sans-serif;
+  font-weight: 500;
+  line-height: 160%;
+}
+
+.comment {
+  margin: 0 5vh;
+}
+
+.commentBody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.commentBox {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+  width: 400px;
+  border-radius: 10px;
+  border: 1px solid #ff7211;
+  padding: 10px;
+}
+
+.commentBox p {
+  margin: 0;
+  padding: 0;
+}
