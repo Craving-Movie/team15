@@ -82,12 +82,12 @@ document.getElementById("top-btn").addEventListener("click", function () {
   });
 });
 
-// 슬라이드 테스트
+// 개봉 예정작 슬라이드
 let slides = document.querySelector(".Container1"),
   slide = document.querySelectorAll(".Container1 .moviePoster1"),
   currentIdx = 0,
   slideCount = slide.length,
-  slideWidth = 300,
+  slideWidth = 900, // 슬라이드를 얼만큼 넘길 건지(1개씩 넘길 거면 300)
   slideMargin = 30,
   prevBtn = document.querySelector(".prev"),
   nextBtn = document.querySelector(".next");
