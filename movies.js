@@ -45,7 +45,7 @@ fetch(upcomingUrl, options)
     const Container = document.getElementById("upcomingContainer");
     data.results.forEach((movie) => {
       const img = document.createElement("img");
-      img.className = "moviePoster";
+      img.className = "moviePoster1";
       img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
       img.alt = movie.title;
       img.id = movie.id;
@@ -84,7 +84,7 @@ document.getElementById("top-btn").addEventListener("click", function () {
 
 // 슬라이드 테스트
 let slides = document.querySelector(".Container1"),
-  slide = document.querySelectorAll(".Container1 img"),
+  slide = document.querySelectorAll(".Container1 .moviePoster1"),
   currentIdx = 0,
   slideCount = slide.length,
   slideWidth = 300,
@@ -118,7 +118,7 @@ function makeClone() {
 
 // 전체 너비를 구해서 ul의 너비를 지정하는 함수
 function updateWidth() {
-  let currentSlides = document.querySelectorAll(".Container1 img");
+  let currentSlides = document.querySelectorAll(".Container1 .moviePoster1");
   let newSlideCount = currentSlides.length;
 
   let newWidth =
@@ -145,7 +145,7 @@ prevBtn.addEventListener("click", function () {
 
 // 숫자가 넘어와야 함수가 작동 하도록
 // next 누를수록 왼쪽으로 translate left 값이 거리만큼 이동해야함
-// 전체가 슬라이드 너비+여백만큼 이동해야지?
+// 전체가 슬라이드 너비+여백만큼 이동해야함
 function moveSlide(num) {
   // 원래는 0이었는데 사용자가 이동하면 index가 1로 바뀌어있어야 함
   slides.style.left = -num * (slideWidth + slideMargin) + "px";
