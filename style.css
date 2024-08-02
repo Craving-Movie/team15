@@ -68,7 +68,7 @@ header {
   margin-top: 150px;
 }
 
-.Container{
+.Container {
   margin: 0;
   height: 500px;
   display: flex;
@@ -83,20 +83,31 @@ header {
   height: 500px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   /* overflow-x: scroll; */
   padding-left: 90px;
   position: relative;
   transition: 0.5s ease-out;
+  margin-top: 50px;
 }
 
 .Container::-webkit-scrollbar,
-.Container1::-webkit-scrollbar{
+.Container1::-webkit-scrollbar {
   display: none;
 }
 
-.moviePoster,
-.moviePoster1 {
+.moviePoster {
+  margin: 10px;
+  float: left;
+  position: relative;
+  height: 380px;
+  width: auto;
+  border-radius: 10px;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.upcomingPoster {
   margin: 10px;
   float: left;
   position: relative;
@@ -108,12 +119,15 @@ header {
 }
 
 .moviePoster:hover,
-.moviePoster1:hover {
+.upcomingPoster:hover {
   transform: scale(1.2);
   z-index: 999;
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
 }
 
+.Container1 li:not(:last-child) {
+  margin-right: 30px;
+}
 /* top 버튼 */
 #top-btn {
   z-index: 999;
@@ -143,6 +157,6 @@ header {
   cursor: pointer;
 }
 
-.moviePoster1.animated {
+.upcomingPoster.animated {
   transition: 0.5s ease-out;
 }
