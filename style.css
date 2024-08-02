@@ -16,7 +16,7 @@ header {
   height: 100px;
   backdrop-filter: saturate(180%) blur(70px);
   width: 100%;
-  z-index: 100;
+  z-index: 999;
   position: fixed;
   top: 0;
   display: flex;
@@ -68,7 +68,7 @@ header {
   margin-top: 150px;
 }
 
-.Container {
+.container {
   margin: 0;
   height: 500px;
   display: flex;
@@ -78,32 +78,104 @@ header {
   padding-left: 90px;
 }
 
-.Container::-webkit-scrollbar {
+.container::-webkit-scrollbar {
   display: none;
 }
-
-.moviePoster {
+.movieWrapper {
   margin: 10px;
-  float: left;
+  position: relative;
+  display:inline-block;
+
+}
+.moviePoster {
+  /* margin: 10px; 여기서 빼고 상위클래스 movieWrapper에 추가해야 wrap이랑 크기가 맞음 */ 
+  /* float: left; */
   position: relative;
   height: 380px;
   width: auto;
   border-radius: 10px;
   transition: 300ms;
   cursor: pointer;
+  
 }
 
 .moviePoster:hover {
-  transform: scale(1.2);
-  z-index: 999;
+  /*자바스크립트 인아웃에 적용 or 무비포스터 오버 */
+  /* transform: scale(1.2); */
+  /* z-index: 333; */
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
+}
+
+/********************/
+
+
+/* 정보 div 스타일 */
+.movieWrapper .wrap {
+  z-index: 777;
+  visibility: hidden; /* 초기 상태: 숨김 */
+  opacity: 0; /* 초기 투명도: 완전 투명 */
+  position: absolute;
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  color: #fff;
+  box-sizing: border-box;
+  transition: opacity 300ms ease-in-out, visibility 0s linear 300ms;
+  /* 300ms 후 visibility 변경 */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* z-index: 777;
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  color: #fff;
+  box-sizing: border-box;
+  transition: opacity 300ms ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8); */
+}
+.movieWrapper:hover .wrap {
+  transition-delay: 0s;
+  /* visibility 즉시 변경 */
+}
+
+/* 제목 스타일 */
+.movieWrapper .wrap .title {
+  margin-bottom: 10px;
+}
+
+/* 요약 스타일 ----- 말줄임표... 추가하기 */
+.movieWrapper .wrap .summary {
+  overflow: hidden;
+  
+  height: 152px;
+  font-size: 14px;
+}
+
+/* 평점 스타일 */
+.movieWrapper .wrap .score {
+  overflow: hidden;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 0 0 0;
+  border-top: 1px solid #3c3c3c;
+  text-align: center;
 }
 
 /* top 버튼 */
 #top-btn {
   z-index: 999;
   position: fixed;
-  bottom: 40px;
+  bottom: 80px;
   right: 40px;
   cursor: pointer;
   border-radius: 50%;
@@ -114,3 +186,26 @@ header {
   color: white;
   line-height: 120%;
 }
+
+/* footer */
+footer {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #353535;
+  padding: 10px 0;
+
+}
+
+footer .titleLogo{
+  width: 80px;
+  margin: 0;
+}
+
+.team-member{
+  font-size: 13px;
+  color: #d0d0d0;
+}
+
