@@ -27,6 +27,7 @@ header {
 
 .titleLogo {
   margin-left: 100px;
+  cursor: pointer;
 }
 
 .search {

@@ -6,7 +6,6 @@
     <title>Movie Box</title>
     <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/comment.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -57,8 +56,8 @@
   </header>
 
   <body>
-    <!-- 개봉 예정작 -->
     <div class="movieBody">
+      <!-- 개봉 예정작 -->
       <div class="slideBox">
         <p class="categoryTitle">개봉 예정작</p>
         <!-- 슬라이더 부분 -->
@@ -68,81 +67,25 @@
 
     <!-- 현재 상영작 -->
     <div class="slideBox">
-      <p class="categoryTitle">현재 상영작</p>
+      <p class="categoryTitle">절찬리 상영중!</p>
       <!-- 슬라이더 부분 -->
       <div id="nowContainer" class="Container"></div>
     </div>
+    <!-- 현재 상영작 -->
+    <div class="slideBox">
+      <p class="categoryTitle">사람들이 가장 많이 본 영화</p>
+      <!-- 슬라이더 부분 -->
+      <div id="popularContainer" class="Container"></div>
+    </div>
 
-    <!-- 댓글 기능 테스트 -->
-    <div class="comment">
-      <div class="writeBox">
-        <div>
-          <button id="writeBtn">리뷰 남기기</button>
-        </div>
-        <div class="commnetWrite" id="commnetWrite">
-          <div style="display: flex; flex-direction: column">
-            <input id="inputUser" type="text" placeholder="닉네임" />
-            <input id="inputPw" type="password" placeholder="비밀번호" />
-          </div>
-          <input id="inputComment" type="text" placeholder="한 줄 리뷰를 작성해주세요! (최대 40자)" maxlength="40" />
-          <div style="display: flex; flex-direction: column; position: relative">
-            <select class="selectStar" id="star">
-              <option>별점</option>
-              <option value="★">⭐</option>
-              <option value="★★">⭐⭐</option>
-              <option value="★★★">⭐⭐⭐</option>
-              <option value="★★★★">⭐⭐⭐⭐</option>
-              <option value="★★★★★">⭐⭐⭐⭐⭐</option>
-            </select>
-            <div class="starArrow">
-              <svg fill="white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" style="height: 25px">
-                <path
-                  d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"
-                />
-              </svg>
-            </div>
-            <button id="commnetBtn">등록</button>
-          </div>
-        </div>
-      </div>
-      <div class="commentBody" id="commentBody">
-        <div class="commentBox" id="commentBox">
-          <p class="commentStar" id="commentStar">★★★★★</p>
-          <p class="commentUser" id="commentUser">닉네임</p>
-          <p class="commentText" id="commentText">댓글내용블라블라</p>
-          <p class="commentTime" id="commentTime">24.08.01</p>
-          <button class="edit">수정</button>
-          <button class="del">삭제</button>
-        </div>
-        <div class="commentBox" id="commentBox">
-          <p class="commentStar" id="commentStar">★★★★★</p>
-          <p class="commentUser" id="commentUser">닉네임</p>
-          <p class="commentText" id="commentText">댓글내용블라블라</p>
-          <p class="commentTime" id="commentTime">24.08.01</p>
-          <button class="edit" id="commentEdit">수정</button>
-          <button class="del" id="commentDel">삭제</button>
-        </div>
-        <div class="commentBox" id="commentBox">
-          <p class="commentStar" id="commentStar">★★★★★</p>
-          <p class="commentUser" id="commentUser">닉네임</p>
-          <p class="commentText" id="commentText">댓글내용블라블라</p>
-          <p class="commentTime" id="commentTime">24.08.01</p>
-          <button class="edit" id="commentEdit">수정</button>
-          <button class="del" id="commentDel">삭제</button>
-        </div>
-        <div class="commentBox" id="commentBox">
-          <p class="commentStar" id="commentStar">★★★★★</p>
-          <p class="commentUser" id="commentUser">닉네임</p>
-          <p class="commentText" id="commentText">댓글내용블라블라</p>
-          <p class="commentTime" id="commentTime">24.08.01</p>
-          <button class="edit" id="commentEdit">수정</button>
-          <button class="del" id="commentDel">삭제</button>
-        </div>
-      </div>
+    <!-- 현재 상영작 -->
+    <div class="slideBox">
+      <p class="categoryTitle">안보면 후회하는 명작</p>
+      <!-- 슬라이더 부분 -->
+      <div id="topContainer" class="Container"></div>
     </div>
 
     <button id="top-btn" onclick="toTop()">▲<br />Top</button>
-    <script src="./movies.js"></script>
-    <script src="./comment.js"></script>
+    <script type="module" src="./script/movies.js"></script>
   </body>
 </html>
