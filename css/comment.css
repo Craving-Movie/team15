@@ -34,20 +34,48 @@
 }
 
 .commentText {
-  top: 30px;
+  top: 40px;
   font-size: 20px;
+  line-height: 1.3;
 }
 
 .commentTime {
   font-size: 12px;
-  bottom: 5px;
+  bottom: 10px;
   color: #616161;
 }
 
 .commentUser {
   font-size: 15px;
-  bottom: 20px;
+  bottom: 23px;
   color: #616161;
+}
+
+.commentStar {
+  color: #ff7211;
+  font-size: 20px;
+  top: 10px;
+}
+
+/* 수정, 삭제 버튼 */
+.commentBox button {
+  position: absolute;
+  bottom: 15px;
+  border-radius: 10px;
+  border: none;
+  width: 45px;
+  color: white;
+  font-weight: 200;
+}
+
+.commentBox > .del {
+  right: 15px;
+  background-color: #42abae;
+}
+
+.commentBox > .edit {
+  right: 65px;
+  background-color: #f18910;
 }
 
 /* 댓글 입력 부분 */
@@ -64,12 +92,12 @@
   background-color: #0da9b3;
   border: none;
   color: white;
+  margin-bottom: 50px;
 }
 
 .commnetWrite {
   display: flex;
   flex-direction: row;
-  margin-top: 20px;
   margin-bottom: 70px;
   align-items: center;
 }
@@ -117,14 +145,14 @@
   border: none;
   color: white;
   appearance: none;
-  padding-left: 15px;
+  padding-left: 10px;
   position: relative;
 }
 
 .starArrow {
   position: absolute;
   right: 10px;
-  top: -2%;
+  top: -1%;
 }
 
 .selectStar:focus {
