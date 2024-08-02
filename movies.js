@@ -59,7 +59,7 @@ titleLogo.addEventListener("click", function () {
   window.location.href = "index.html";
 });
 
-// 개봉 예정작 카드 생성 부분
+// 카드 생성 함수
 function fetchMovies(url, containerId) {
   return fetch(url, options)
     .then((response) => response.json())
@@ -74,28 +74,6 @@ function fetchMovies(url, containerId) {
         img.addEventListener("click", () => {
           alert(`<${movie.title}>의 ID는 ${movie.id}입니다.`);
           // 클릭 시 상세 페이지로 이동
-          window.location.href = `index2.html?id=${movie.id}`;
-        });
-        container.appendChild(img);
-      });
-    })
-    .catch((error) => console.error("Error fetching movies:", error));
-}
-
-// 현재 상영작 카드 생성 부분
-function fetchMovies(url, containerId) {
-  return fetch(url, options)
-    .then((response) => response.json())
-    .then((data) => {
-      const container = document.getElementById(containerId);
-      data.results.forEach((movie) => {
-        const img = document.createElement("img");
-        img.className = "moviePoster";
-        img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-        img.alt = movie.title;
-        img.id = movie.id;
-        img.addEventListener("click", () => {
-          alert(`<${movie.title}>의 ID는 ${movie.id}입니다.`);
           window.location.href = `index2.html?id=${movie.id}`;
         });
         container.appendChild(img);
