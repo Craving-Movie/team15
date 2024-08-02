@@ -239,7 +239,7 @@ fetch(topUrl, options)
       });
       
       img.addEventListener("click", () => alert(`<${movie.title}>의 ID는 ${movie.id}입니다.`));
-      Container.appendChild(wrappergi);
+      Container.appendChild(wrapper);
     });
   })
   .catch((err) => console.error(err));
