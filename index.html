@@ -58,24 +58,28 @@
   <body>
     <!-- 개봉 예정작 -->
     <div class="movieBody">
-      <div class="slideBox">
+      <div class="upcomigBox">
         <p class="categoryTitle">개봉 예정작</p>
         <!-- 슬라이더 부분 -->
         <div id="upcomingContainer" class="upcomingList">
         </div>
-        <p class="controls">
-          <span class="prev">이전</span>
-          <span class="next">다음</span>
+        <p class="upcomingBtn">
+          <span class="upcomingPrev">이전</span>
+          <span class="upcomingNext">다음</span>
         </p>
       </div>
     </div>
 
     <!-- 현재 상영작 -->
-    <div class="slideBox">
+    <div class="nowBox">
       <p class="categoryTitle">현재 상영작</p>
       <!-- 슬라이더 부분 -->
-      <div id="nowContainer" class="Container">
+      <div id="nowContainer" class="nowList">
       </div>
+      <p class="nowBtn">
+        <span class="nowPrev">이전</span>
+        <span class="nowNext">다음</span>
+      </p>
     </div>
 
     <button id="top-btn" onclick="toTop()">▲<br />Top</button>

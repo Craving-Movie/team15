@@ -68,16 +68,7 @@ header {
   margin-top: 150px;
 }
 
-.Container {
-  margin: 0;
-  height: 500px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  overflow-x: scroll;
-  padding-left: 90px;
-}
-
+/* 영화 포스터 목록 */
 .upcomingList {
   margin: 0;
   height: 500px;
@@ -91,20 +82,21 @@ header {
   margin-top: 50px;
 }
 
-.Container::-webkit-scrollbar,
-.upcomingList::-webkit-scrollbar {
-  display: none;
+.nowList {
+  margin: 0;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  padding-left: 90px;
+  position: relative;
+  transition: 0.5s ease-out;
+  margin-top: 50px;
 }
 
-.moviePoster {
-  margin: 10px;
-  float: left;
-  position: relative;
-  height: 380px;
-  width: auto;
-  border-radius: 10px;
-  transition: 300ms;
-  cursor: pointer;
+.nowList::-webkit-scrollbar,
+.upcomingList::-webkit-scrollbar {
+  display: none;
 }
 
 .upcomingPoster {
@@ -118,16 +110,29 @@ header {
   cursor: pointer;
 }
 
-.moviePoster:hover,
-.upcomingPoster:hover {
+.nowPoster {
+  margin: 10px;
+  float: left;
+  position: relative;
+  height: 380px;
+  width: auto;
+  border-radius: 10px;
+  transition: 300ms;
+  cursor: pointer;
+}
+
+.upcomingPoster:hover,
+.nowPoster:hover {
   transform: scale(1.2);
   /* z-index: 999; */
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
 }
 
-.upcomingList div:not(:last-child) {
+.upcomingList div:not,
+.nowList div:not(:last-child) {
   margin-right: 30px;
 }
+
 /* top 버튼 */
 #top-btn {
   z-index: 999;
@@ -145,12 +150,13 @@ header {
 }
 
 /* 슬라이드 버튼 (확정 아님)*/
-.controls {
+/* 개봉 예정작 */
+.upcomingBtn {
   text-align: center;
   margin-top: 50px;
   z-index: 999;
 }
-.controls span {
+.upcomingBtn span {
   background-color: #333;
   color: #fff;
   padding: 10px 20px;
@@ -158,18 +164,44 @@ header {
   cursor: pointer;
 }
 
-.prev{
+.upcomingPrev{
   left: 0;
   position: absolute;
   top: 40%;
 }
 
-.next{
+.upcomingNext{
   right: 0;
   position: absolute;
   top: 40%;
 }
 
-.upcomingPoster.animated {
+/* 현재 상영작 */
+.nowBtn {
+  text-align: center;
+  margin-top: 50px;
+  z-index: 999;
+}
+.nowBtn span {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.nowPrev{
+  left: 0;
+  position: absolute;
+  top: 105%;
+}
+
+.nowNext{
+  right: 0;
+  position: absolute;
+  top: 105%;
+}
+.upcomingPoster.animated,
+.nowPoster.animated {
   transition: 0.5s ease-out;
 }
