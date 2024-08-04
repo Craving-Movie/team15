@@ -78,7 +78,7 @@ header {
   padding-left: 90px;
 }
 
-.Container1 {
+.upcomingList {
   margin: 0;
   height: 500px;
   display: flex;
@@ -92,7 +92,7 @@ header {
 }
 
 .Container::-webkit-scrollbar,
-.Container1::-webkit-scrollbar {
+.upcomingList::-webkit-scrollbar {
   display: none;
 }
 
@@ -121,11 +121,11 @@ header {
 .moviePoster:hover,
 .upcomingPoster:hover {
   transform: scale(1.2);
-  z-index: 999;
+  /* z-index: 999; */
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
 }
 
-.Container1 li:not(:last-child) {
+.upcomingList div:not(:last-child) {
   margin-right: 30px;
 }
 /* top 버튼 */
@@ -148,6 +148,7 @@ header {
 .controls {
   text-align: center;
   margin-top: 50px;
+  z-index: 999;
 }
 .controls span {
   background-color: #333;
@@ -155,6 +156,18 @@ header {
   padding: 10px 20px;
   margin: 0 10px;
   cursor: pointer;
+}
+
+.prev{
+  left: 0;
+  position: absolute;
+  top: 40%;
+}
+
+.next{
+  right: 0;
+  position: absolute;
+  top: 40%;
 }
 
 .upcomingPoster.animated {
