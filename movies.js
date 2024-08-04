@@ -15,22 +15,9 @@ const nowUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY
 
 window.onload = async function () {
   try {
-    // 검색
-    // 윈도우가 준비됐을 때 해당 함수 실행
-    document.getElementById("search-button").addEventListener("click", () => {
-      const query = document.getElementById("search-input").value.toLowerCase();
-      const movieCards = document.querySelectorAll(".moviePoster");
-      movieCards.forEach((card) => {
-        const title = card.querySelector("h3").textContent.toLowerCase();
-        if (title.includes(query)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    });
     // baseData 함수를 실행시켜 영화 기본 정보 로드
     await baseData();
+
     // URL 쿼리파라미터에서 영화 ID를 가져옴
     const urlParameter = new URLSearchParams(window.location.search);
     const selectedMovieId = urlParameter.get("id");
@@ -39,6 +26,30 @@ window.onload = async function () {
       const movieDetails = await fetchMovieDetails(selectedMovieId);
       printDetail(movieDetails);
     }
+    // 검색
+    // 윈도우가 준비됐을 때 해당 함수 실행
+    document.getElementById("search-button").addEventListener("click", () => {
+      const query = document.getElementById("search-input").value.toLowerCase();
+      const movieCards = document.querySelectorAll(".moviePoster");
+      let found = false;
+      if (query === "") {
+        alert("검색어를 입력하세요.");
+        return;
+      }
+      movieCards.forEach((card) => {
+        const posterTitle = card.alt.toLowerCase();
+        // console.log(posterTitle);
+        const posterId = card.id;
+        if (posterTitle.includes(query)) {
+          window.location.href = `index2.html?id=${posterId}`;
+          found = true;
+        }
+      });
+
+      if (!found) {
+        alert(`<${query}>에 대한 검색 결과가 없습니다.`);
+      }
+    });
   } catch (error) {
     console.error("에러 발생", error);
   }
@@ -95,13 +106,12 @@ document.getElementById("top-btn").addEventListener("click", function () {
 function baseData() {
   Promise.all([
     fetchMovies(upcomingUrl, "upcomingContainer"),
-    fetchMovies(nowUrl, "nowContainer"),
-    fetchMovies(topUrl, "nowContainer"),
-    fetchMovies(popularUrl, "nowContainer")
+    fetchMovies(nowUrl, "nowContainer")
+    // fetchMovies(topUrl, "topContainer"),
+    // fetchMovies(popularUrl, "popularContainer")
   ])
     .then(() => {
       console.log("영화 title,overview...가 성공적으로 로드되었습니다.");
-      console.log("movieArray:", movieArray); // movieArray의 내용 확인
     })
     .catch((error) => {
       console.error("영화 title,overview... 로드 중 오류 발생:", error);
@@ -132,37 +142,45 @@ async function fetchMovieDetails(movieId) {
 function printDetail(movieDetails) {
   const detaillWrap = document.querySelector(".detaillWrap");
   const actorList = movieDetails.cast
-    .filter(function (actor) {
-      return actor.profile_path !== null;
+    .map((actor) => {
+      let profileImage;
+      if (actor.profile_path) {
+        profileImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
+      } else {
+        if (actor.gender === 0) {
+          profileImage = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg`;
+        } else {
+          profileImage = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-36-user-female-grey-d9222f16ec16a33ed5e2c9bbdca07a4c48db14008bbebbabced8f8ed1fa2ad59.svg`;
+        }
+      }
+
+      return `
+    <li>
+      <img class="actorImg" src="${profileImage}" alt="${actor.name} 사진" />
+      <div class="actorInfo">
+        <p class="actorName">${actor.name}</p>
+        <p class="actorCharacter">역할: ${actor.character}</p>
+      </div>
+    </li>
+  `;
     })
-    .map(
-      (actor) => `
-      <li>
-        <img class="actorImg" src="https://image.tmdb.org/t/p/w500${actor.profile_path}" alt="${actor.name} 사진" />
-        <div class="actorInfo">
-          <p class="actorName">${actor.name}</p>
-          <p class="actorCharacter">역할: ${actor.character}</p>
-        </div>
-      </li>
-    `
-    )
     .join(""); // 배열의 각 요소를 문자열로 결합
 
   // 상세 페이지 내용 생성
   const temp_html = `
-    <div class="posterDiv">
-      <img id="item" class="posterImg" src="https://image.tmdb.org/t/p/w500${movieDetails.poster_path}" alt="${movieDetails.title} 포스터" />
-      <h3 id="item" class="detailTitle">${movieDetails.title}</h3>
-      <h3 id="item" class="detailRate">평점: ${movieDetails.vote_average}</h3>
-      <p id="item" class="detailRelease">개봉일 : ${movieDetails.releaseDate}</p>
-      <p id="item" class="detailRuntime">| 상영 시간: ${movieDetails.runtime}분</p>
-      <p id="item" class="detailAge"> | 연령 제한: ${movieDetails.age}</p>
-      <p id="item" class="detailOverview">줄거리: ${movieDetails.overview}</p>
-    </div>
-    <ul class="actorContainer">
-      ${actorList}
-    </ul>
-  `;
+  <div class="posterDiv">
+    <img id="item" class="posterImg" src="https://image.tmdb.org/t/p/w500${movieDetails.poster_path}" alt="${movieDetails.title} 포스터" />
+    <h3 id="item" class="detailTitle">${movieDetails.title}</h3>
+    <h3 id="item" class="detailRate">평점: ${movieDetails.vote_average}</h3>
+    <p id="item" class="detailRelease">개봉일 : ${movieDetails.releaseDate}</p>
+    <p id="item" class="detailRuntime">| 상영 시간: ${movieDetails.runtime}분</p>
+    <p id="item" class="detailAge"> | 연령 제한: ${movieDetails.age}</p>
+    <p id="item" class="detailOverview">줄거리: ${movieDetails.overview}</p>
+  </div>
+  <ul class="actorContainer">
+    ${actorList}
+  </ul>
+`;
 
   detaillWrap.innerHTML = temp_html;
 }
