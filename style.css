@@ -207,6 +207,8 @@ header {
 }
 
 .upcomingPoster.animated,
-.nowPoster.animated {
+.nowPoster.animated,
+.popularPoster.animeted,
+.topPoster.animeted {
   transition: 0.5s ease-out;
 }
