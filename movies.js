@@ -215,7 +215,7 @@ fetch(popularUrl, options)
   });
 
     // 슬라이드에 쓸 변수들
-    let popuSlides = document.querySelector(".popularList");
+    let popSlides = document.querySelector(".popularList");
     let popSlide = document.querySelectorAll(".popularList .popularPoster");
     let popCurrentIdx = 0;
     let popSlideCount = popSlide.length;
@@ -235,31 +235,88 @@ fetch(popularUrl, options)
     });
 
     function moveSlide2(num2) {
-      popuSlides.style.left = -num2 * (popSlideWidth + popSlideMargin) + "px";
+      popSlides.style.left = -num2 * (popSlideWidth + popSlideMargin) + "px";
       popCurrentIdx = num2;
       console.log(popCurrentIdx, popSlideCount);
 
       // 마지막 도달 시 첫 번째로 돌아가기
       if (popCurrentIdx === popSlideCount || popCurrentIdx === -popSlideCount) {
         setTimeout(function () {
-          popuSlides.classList.remove("animated");
-          popuSlides.style.left = "0px";
+          popSlides.classList.remove("animated");
+          popSlides.style.left = "0px";
           popCurrentIdx = 0;
         }, 500);
         console.log("끝이니까 처음으로 돌아가자!2");
 
         setTimeout(function () {
-          popuSlides.classList.add("animated");
+          popSlides.classList.add("animated");
         }, 600);
       }
     }
 })
 .catch((err) => console.error(err));
 
+  // 4. 최고 평점 카드 생성 부분
+  fetch(topUrl, options)
+  .then((topResponse) => topResponse.json())
+  .then((topData) => {
+    const topContainer = document.getElementById("topContainer");
+    topData.results.forEach((topMovie) => {
+      const topImg = document.createElement("img");
+      topImg.className = "topPoster";
+      topImg.src = `https://image.tmdb.org/t/p/w500${topMovie.poster_path}`;
+      topImg.alt = topMovie.title;
+      topImg.id = topMovie.id;
+      topImg.addEventListener("click", () => alert(`<${topMovie.title}>의 ID는 ${topMovie.id}입니다.`));
+      topContainer.appendChild(topImg);
+    });
+  
+      // 슬라이드에 쓸 변수들
+      let topSlides = document.querySelector(".topList");
+      let topSlide = document.querySelectorAll(".topList .topPoster");
+      let topCurrentIdx = 0;
+      let topSlideCount = topSlide.length;
+      let topSlideWidth = 300;
+      let topSlideMargin = 30;
+      let topPrevBtn = document.querySelector(".topPrev");
+      let topNextBtn = document.querySelector(".topNext");
+  
+      console.log("수정중2 => ", topSlideCount);
+  
+      // 버튼 Event
+      topNextBtn.addEventListener("click", function () {
+        moveSlide2(topCurrentIdx + 5);
+      });
+      topPrevBtn.addEventListener("click", function () {
+        moveSlide2(topCurrentIdx - 5);
+      });
+  
+      function moveSlide2(num2) {
+        topSlides.style.left = -num2 * (topSlideWidth + topSlideMargin) + "px";
+        topCurrentIdx = num2;
+        console.log(topCurrentIdx, topSlideCount);
+  
+        // 마지막 도달 시 첫 번째로 돌아가기
+        if (topCurrentIdx === topSlideCount || topCurrentIdx === -topSlideCount) {
+          setTimeout(function () {
+            topSlides.classList.remove("animated");
+            topSlides.style.left = "0px";
+            topCurrentIdx = 0;
+          }, 500);
+          console.log("끝이니까 처음으로 돌아가자!2");
+  
+          setTimeout(function () {
+            topSlides.classList.add("animated");
+          }, 600);
+        }
+      }
+  })
+  .catch((err) => console.error(err));
+
 // top 버튼
 document.getElementById("top-btn").addEventListener("click", function () {
   var body = document.getElementsByTagName("body")[0];
-  //창의 스크롤을 본문 최상단으로 부드럽게 이동시킵니다.
+  //창의 스크롤을 본문 최상단으로 부드럽게 이동
   window.scroll({
     behavior: "smooth",
     top: body.offsetTop

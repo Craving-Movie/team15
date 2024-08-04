@@ -71,7 +71,8 @@ header {
 /* 영화 포스터 목록 */
 .upcomingList,
 .nowList,
-.popularList {
+.popularList,
+.topList {
   margin: 0;
   height: 500px;
   display: flex;
@@ -84,14 +85,15 @@ header {
   margin-top: 50px;
 }
 
-.nowList::-webkit-scrollbar,
+/* .nowList::-webkit-scrollbar,
 .upcomingList::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .upcomingPoster,
 .nowPoster,
-.popularPoster {
+.popularPoster,
+.topPoster {
   margin: 10px;
   float: left;
   position: relative;
@@ -104,7 +106,8 @@ header {
 
 .upcomingPoster:hover,
 .nowPoster:hover,
-.popularPoster:hover {
+.popularPoster:hover,
+.topPoster:hover {
   transform: scale(1.2);
   /* z-index: 999; */
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
@@ -132,17 +135,18 @@ header {
 }
 
 /* 슬라이드 버튼 (확정 아님)*/
-/* 개봉 예정작 */
 .upcomingBtn,
 .nowBtn,
-.popularBtn {
+.popularBtn,
+.topBtn {
   text-align: center;
   margin-top: 50px;
   z-index: 999;
 }
 .upcomingBtn span,
 .nowBtn span,
-.popularBtn span {
+.popularBtn span,
+.topBtn span {
   background-color: #333;
   color: #fff;
   padding: 10px 20px;
@@ -150,6 +154,7 @@ header {
   cursor: pointer;
 }
 
+/* 개봉 예정작 */
 .upcomingPrev{
   left: 0;
   position: absolute;
@@ -175,6 +180,7 @@ header {
   top: 170%;
 }
 
+/* 인기 영화 */
 .popularPrev{
   left: 0;
   position: absolute;
@@ -186,6 +192,20 @@ header {
   position: absolute;
   top: 40%;
 }
+
+/* 명작 */
+.topPrev{
+  left: 0;
+  position: absolute;
+  top: 235%;
+}
+
+.topNext{
+  right: 0;
+  position: absolute;
+  top: 235%;
+}
+
 .upcomingPoster.animated,
 .nowPoster.animated {
   transition: 0.5s ease-out;
