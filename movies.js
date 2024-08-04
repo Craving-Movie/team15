@@ -47,7 +47,7 @@ input.addEventListener("keyup", function (event) {
   }
 });
 
-// 개봉 예정작 카드 생성 부분
+// 1. 개봉 예정작 카드 생성 부분
 fetch(upcomingUrl, options)
   .then((response) => response.json())
   .then((data) => {
@@ -142,62 +142,119 @@ fetch(upcomingUrl, options)
   })
   .catch((err) => console.error(err));
 
-// 현재 상영작 카드 생성 부분
+// 2. 현재 상영작 카드 생성 부분
 fetch(nowUrl, options)
-  .then((response2) => response2.json())
-  .then((data2) => {
-    const Container2 = document.getElementById("nowContainer");
-    data2.results.forEach((movie2) => {
-      const img2 = document.createElement("img");
-      img2.className = "nowPoster";
-      img2.src = `https://image.tmdb.org/t/p/w500${movie2.poster_path}`;
-      img2.alt = movie2.title;
-      img2.id = movie2.id;
-      img2.addEventListener("click", () => alert(`<${movie2.title}>의 ID는 ${movie2.id}입니다.`));
-      Container2.appendChild(img2);
+  .then((nowResponse) => nowResponse.json())
+  .then((nowData) => {
+    const nowContainer = document.getElementById("nowContainer");
+    nowData.results.forEach((nowMovie) => {
+      const nowImg = document.createElement("img");
+      nowImg.className = "nowPoster";
+      nowImg.src = `https://image.tmdb.org/t/p/w500${nowMovie.poster_path}`;
+      nowImg.alt = nowMovie.title;
+      nowImg.id = nowMovie.id;
+      nowImg.addEventListener("click", () => alert(`<${nowMovie.title}>의 ID는 ${nowMovie.id}입니다.`));
+      nowContainer.appendChild(nowImg);
     });
 
       // 슬라이드에 쓸 변수들
-      let slides2 = document.querySelector(".nowList");
-      let slide2 = document.querySelectorAll(".nowList .nowPoster");
-      let currentIdx2 = 0;
-      let slideCount2 = slide2.length;
-      let slideWidth2 = 300;
-      let slideMargin2 = 30;
-      let prevBtn2 = document.querySelector(".nowPrev");
-      let nextBtn2 = document.querySelector(".nowNext");
+      let nowSlides = document.querySelector(".nowList");
+      let nowSlide = document.querySelectorAll(".nowList .nowPoster");
+      let nowCurrentIdx = 0;
+      let nowSlideCount = nowSlide.length;
+      let nowSlideWidth = 300;
+      let nowSlideMargin = 30;
+      let nowPrevBtn = document.querySelector(".nowPrev");
+      let nowNextBtn = document.querySelector(".nowNext");
   
-      console.log("수정중2 => ", slideCount2);
+      console.log("수정중2 => ", nowSlideCount);
   
       // 버튼 Event
-      nextBtn2.addEventListener("click", function () {
-        moveSlide2(currentIdx2 + 5);
+      nowNextBtn.addEventListener("click", function () {
+        moveSlide2(nowCurrentIdx + 5);
       });
-      prevBtn2.addEventListener("click", function () {
-        moveSlide2(currentIdx2 - 5);
+      nowPrevBtn.addEventListener("click", function () {
+        moveSlide2(nowCurrentIdx - 5);
       });
   
       function moveSlide2(num2) {
-        slides2.style.left = -num2 * (slideWidth2 + slideMargin2) + "px";
-        currentIdx2 = num2;
-        console.log(currentIdx2, slideCount2);
+        nowSlides.style.left = -num2 * (nowSlideWidth + nowSlideMargin) + "px";
+        nowCurrentIdx = num2;
+        console.log(nowCurrentIdx, nowSlideCount);
   
         // 마지막 도달 시 첫 번째로 돌아가기
-        if (currentIdx2 === slideCount2 || currentIdx2 === -slideCount2) {
+        if (nowCurrentIdx === nowSlideCount || nowCurrentIdx === -nowSlideCount) {
           setTimeout(function () {
-            slides2.classList.remove("animated");
-            slides2.style.left = "0px";
-            currentIdx2 = 0;
+            nowSlides.classList.remove("animated");
+            nowSlides.style.left = "0px";
+            nowCurrentIdx = 0;
           }, 500);
           console.log("끝이니까 처음으로 돌아가자!2");
   
           setTimeout(function () {
-            slides2.classList.add("animated");
+            nowSlides.classList.add("animated");
           }, 600);
         }
       }
   })
   .catch((err) => console.error(err));
+
+  // 3. 인기 영화 카드 생성 부분
+fetch(popularUrl, options)
+.then((popResponse) => popResponse.json())
+.then((popData) => {
+  const popContainer = document.getElementById("popularContainer");
+  popData.results.forEach((popMovie) => {
+    const popImg = document.createElement("img");
+    popImg.className = "popularPoster";
+    popImg.src = `https://image.tmdb.org/t/p/w500${popMovie.poster_path}`;
+    popImg.alt = popMovie.title;
+    popImg.id = popMovie.id;
+    popImg.addEventListener("click", () => alert(`<${popMovie.title}>의 ID는 ${popMovie.id}입니다.`));
+    popContainer.appendChild(popImg);
+  });
+
+    // 슬라이드에 쓸 변수들
+    let popuSlides = document.querySelector(".popularList");
+    let popSlide = document.querySelectorAll(".popularList .popularPoster");
+    let popCurrentIdx = 0;
+    let popSlideCount = popSlide.length;
+    let popSlideWidth = 300;
+    let popSlideMargin = 30;
+    let popPrevBtn = document.querySelector(".popularPrev");
+    let popNextBtn = document.querySelector(".popularNext");
+
+    console.log("수정중2 => ", popSlideCount);
+
+    // 버튼 Event
+    popNextBtn.addEventListener("click", function () {
+      moveSlide2(popCurrentIdx + 5);
+    });
+    popPrevBtn.addEventListener("click", function () {
+      moveSlide2(popCurrentIdx - 5);
+    });
+
+    function moveSlide2(num2) {
+      popuSlides.style.left = -num2 * (popSlideWidth + popSlideMargin) + "px";
+      popCurrentIdx = num2;
+      console.log(popCurrentIdx, popSlideCount);
+
+      // 마지막 도달 시 첫 번째로 돌아가기
+      if (popCurrentIdx === popSlideCount || popCurrentIdx === -popSlideCount) {
+        setTimeout(function () {
+          popuSlides.classList.remove("animated");
+          popuSlides.style.left = "0px";
+          popCurrentIdx = 0;
+        }, 500);
+        console.log("끝이니까 처음으로 돌아가자!2");
+
+        setTimeout(function () {
+          popuSlides.classList.add("animated");
+        }, 600);
+      }
+    }
+})
+.catch((err) => console.error(err));
 
 // top 버튼
 document.getElementById("top-btn").addEventListener("click", function () {

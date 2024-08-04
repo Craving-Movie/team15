@@ -63,13 +63,15 @@ header {
   margin: 20px 0 -40px 105px;
 }
 
-.movieBody {
+.popularBox {
   width: auto;
   margin-top: 150px;
 }
 
 /* 영화 포스터 목록 */
-.upcomingList {
+.upcomingList,
+.nowList,
+.popularList {
   margin: 0;
   height: 500px;
   display: flex;
@@ -82,35 +84,14 @@ header {
   margin-top: 50px;
 }
 
-.nowList {
-  margin: 0;
-  height: 500px;
-  display: flex;
-  flex-direction: row;
-  /* align-items: center; */
-  padding-left: 90px;
-  position: relative;
-  transition: 0.5s ease-out;
-  margin-top: 50px;
-}
-
 .nowList::-webkit-scrollbar,
 .upcomingList::-webkit-scrollbar {
   display: none;
 }
 
-.upcomingPoster {
-  margin: 10px;
-  float: left;
-  position: relative;
-  height: 380px;
-  width: auto;
-  border-radius: 10px;
-  transition: 300ms;
-  cursor: pointer;
-}
-
-.nowPoster {
+.upcomingPoster,
+.nowPoster,
+.popularPoster {
   margin: 10px;
   float: left;
   position: relative;
@@ -122,16 +103,17 @@ header {
 }
 
 .upcomingPoster:hover,
-.nowPoster:hover {
+.nowPoster:hover,
+.popularPoster:hover {
   transform: scale(1.2);
   /* z-index: 999; */
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
 }
 
-.upcomingList div:not,
+/* .upcomingList div:not,
 .nowList div:not(:last-child) {
   margin-right: 30px;
-}
+} */
 
 /* top 버튼 */
 #top-btn {
@@ -151,12 +133,16 @@ header {
 
 /* 슬라이드 버튼 (확정 아님)*/
 /* 개봉 예정작 */
-.upcomingBtn {
+.upcomingBtn,
+.nowBtn,
+.popularBtn {
   text-align: center;
   margin-top: 50px;
   z-index: 999;
 }
-.upcomingBtn span {
+.upcomingBtn span,
+.nowBtn span,
+.popularBtn span {
   background-color: #333;
   color: #fff;
   padding: 10px 20px;
@@ -167,39 +153,38 @@ header {
 .upcomingPrev{
   left: 0;
   position: absolute;
-  top: 40%;
+  top: 105%;
 }
 
 .upcomingNext{
   right: 0;
   position: absolute;
-  top: 40%;
+  top: 105%;
 }
 
 /* 현재 상영작 */
-.nowBtn {
-  text-align: center;
-  margin-top: 50px;
-  z-index: 999;
-}
-.nowBtn span {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 20px;
-  margin: 0 10px;
-  cursor: pointer;
-}
-
 .nowPrev{
   left: 0;
   position: absolute;
-  top: 105%;
+  top: 170%;
 }
 
 .nowNext{
   right: 0;
   position: absolute;
-  top: 105%;
+  top: 170%;
+}
+
+.popularPrev{
+  left: 0;
+  position: absolute;
+  top: 40%;
+}
+
+.popularNext{
+  right: 0;
+  position: absolute;
+  top: 40%;
 }
 .upcomingPoster.animated,
 .nowPoster.animated {
