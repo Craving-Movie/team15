@@ -72,9 +72,7 @@ function loadComments(movieId) {
 
   let comments = getComments(movieId);
 
-  for (let i = 0; i < comments.length; i++) {
-    let comment = comments[i];
-
+  comments.forEach((comment) => {
     let listItem = document.createElement("div");
     listItem.className = "commentBox";
     listItem.innerHTML = `
@@ -89,7 +87,7 @@ function loadComments(movieId) {
     `;
 
     commentList.appendChild(listItem);
-  }
+  });
 }
 
 async function boxToggle() {
