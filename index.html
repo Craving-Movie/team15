@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>당무땡</title>
     <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet" />
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -37,7 +37,7 @@
     <div class="search">
       <input type="text" id="search-input" onkeyup="enterkey()" />
       <button id="search-button" class="search-button">
-        <svg width="40px" height="auto" viewBox="0 0 58 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg width="40px" viewBox="0 0 58 57" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M30.4255 3.70679C20.0133 3.70679 7.95417 14.9149 4.10072 24.0799C-0.814613 35.7704 12.0113 45.9603 21.269 49.7179C31.6028 53.9122 41.2318 49.3278 47.1932 40.2753C54.214 29.6141 51.7222 15.1636 40.8409 8.51392C36.6743 5.96764 29.9455 6.79708 25.275 6.79708"
             stroke="#fbbc14"
@@ -56,52 +56,46 @@
   </header>
 
   <body>
-    <!-- 개봉 예정작 -->
-     <div class="popularBox">
-      <p class="categoryTitle">인기 영화</p>
-      <div id="popularContainer" class="popularList">
-      </div>
-      <p class="popularBtn">
-        <span class="popularPrev">이전</span>
-        <span class="popularNext">다음</span>
-      </p>
-     </div>
     <div class="movieBody">
-      <div class="upcomigBox">
-        <p class="categoryTitle">개봉 예정작</p>
+      <div class="slideBox" id="popularBox">
+        <p class="categoryTitle">인기 영화</p>
         <!-- 슬라이더 부분 -->
-        <div id="upcomingContainer" class="upcomingList">
-        </div>
-        <p class="upcomingBtn">
-          <span class="upcomingPrev">이전</span>
-          <span class="upcomingNext">다음</span>
+        <div id="popularContainer" class="container animated"></div>
+        <p class="slideBtn">
+          <span class="prev">&lt;</span>
+          <span class="next">></span>
+        </p>
+      </div>
+      <div class="slideBox" id="upBox">
+        <p class="categoryTitle">개봉 예정</p>
+        <!-- 슬라이더 부분 -->
+        <div id="upcomingContainer" class="container animated"></div>
+        <p class="slideBtn">
+          <span class="prev">&lt;</span>
+          <span class="next">></span>
+        </p>
+      </div>
+      <div class="slideBox" id="nowBox">
+        <p class="categoryTitle">현재 상영중</p>
+        <!-- 슬라이더 부분 -->
+        <div id="nowContainer" class="container animated"></div>
+        <p class="slideBtn">
+          <span class="prev">&lt;</span>
+          <span class="next">></span>
+        </p>
+      </div>
+      <div class="slideBox" id="topBox">
+        <p class="categoryTitle">명작 모음집</p>
+        <!-- 슬라이더 부분 -->
+        <div id="topContainer" class="container animated"></div>
+        <p class="slideBtn">
+          <span class="prev">&lt;</span>
+          <span class="next">></span>
         </p>
       </div>
     </div>
 
-    <!-- 현재 상영작 -->
-    <div class="nowBox">
-      <p class="categoryTitle">현재 상영작</p>
-      <!-- 슬라이더 부분 -->
-      <div id="nowContainer" class="nowList">
-      </div>
-      <p class="nowBtn">
-        <span class="nowPrev">이전</span>
-        <span class="nowNext">다음</span>
-      </p>
-    </div>
-    <div class="topBox">
-      <p class="categoryTitle">명작 모음집</p>
-      <!-- 슬라이더 부분 -->
-      <div id="topContainer" class="topList">
-      </div>
-      <p class="topBtn">
-        <span class="topPrev">이전</span>
-        <span class="topNext">다음</span>
-      </p>
-    </div>
-
     <button id="top-btn" onclick="toTop()">▲<br />Top</button>
-    <script src="./movies.js"></script>
+    <script type="module" src="./script/movies.js"></script>
   </body>
 </html>

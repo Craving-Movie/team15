@@ -16,7 +16,7 @@ header {
   height: 100px;
   backdrop-filter: saturate(180%) blur(70px);
   width: 100%;
-  z-index: 100;
+  z-index: 999;
   position: fixed;
   top: 0;
   display: flex;
@@ -27,6 +27,7 @@ header {
 
 .titleLogo {
   margin-left: 100px;
+  cursor: pointer;
 }
 
 .search {
@@ -58,58 +59,48 @@ header {
 }
 
 /* 영화 카드들 부분 */
-.categoryTitle {
-  font-size: 2vh;
-  margin: 20px 0 -40px 105px;
+.slideBox {
+  position: relative;
 }
 
-.popularBox {
+.categoryTitle {
+  font-size: 25px;
+  margin: 20px 0 -40px 80px;
+}
+
+.movieBody {
   width: auto;
   margin-top: 150px;
 }
 
-/* 영화 포스터 목록 */
-.upcomingList,
-.nowList,
-.popularList,
-.topList {
+.container {
   margin: 0;
   height: 500px;
   display: flex;
   flex-direction: row;
   /* align-items: center; */
   /* overflow-x: scroll; */
-  padding-left: 90px;
+  padding-left: 70px;
   position: relative;
   transition: 0.5s ease-out;
   margin-top: 50px;
 }
 
-/* .nowList::-webkit-scrollbar,
-.upcomingList::-webkit-scrollbar {
+.Container::-webkit-scrollbar {
   display: none;
-} */
-
-.upcomingPoster,
-.nowPoster,
-.popularPoster,
-.topPoster {
-  margin: 10px;
-  float: left;
-  position: relative;
-  height: 380px;
-  width: auto;
-  border-radius: 10px;
-  transition: 300ms;
-  cursor: pointer;
 }
 
-.upcomingPoster:hover,
-.nowPoster:hover,
-.popularPoster:hover,
-.topPoster:hover {
+.moviePoster {
+  margin: 10px;
+  position: relative;
+  height: 380px;
+  border-radius: 10px;
+  transition: 300ms;
+}
+
+.moviePoster:hover {
   transform: scale(1.2);
-  /* z-index: 999; */
+  z-index: 100;
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
 }
 
@@ -128,87 +119,45 @@ header {
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  background-color: #0d9ba4;
+  background-color: rgb(13, 155, 164);
   border: 1px solid white;
   color: white;
   line-height: 120%;
 }
 
 /* 슬라이드 버튼 (확정 아님)*/
-.upcomingBtn,
-.nowBtn,
-.popularBtn,
-.topBtn {
+.slideBtn {
   text-align: center;
   margin-top: 50px;
-  z-index: 999;
 }
-.upcomingBtn span,
-.nowBtn span,
-.popularBtn span,
-.topBtn span {
-  background-color: #333;
+
+.slideBtn span {
+  height: 360px;
+  width: 35px;
+  background-color: rgb(0, 0, 0, 0.9);
   color: #fff;
   padding: 10px 20px;
-  margin: 0 10px;
   cursor: pointer;
-}
-
-/* 개봉 예정작 */
-.upcomingPrev{
-  left: 0;
   position: absolute;
-  top: 105%;
+  top: 45%;
+  transform: translateY(-49.5%);
+  z-index: 200;
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.upcomingNext{
+.next {
   right: 0;
-  position: absolute;
-  top: 105%;
+  border-radius: 15px 0 0 15px;
 }
 
-/* 현재 상영작 */
-.nowPrev{
+.prev {
   left: 0;
-  position: absolute;
-  top: 170%;
+  border-radius: 0 15px 15px 0;
 }
 
-.nowNext{
-  right: 0;
-  position: absolute;
-  top: 170%;
-}
-
-/* 인기 영화 */
-.popularPrev{
-  left: 0;
-  position: absolute;
-  top: 40%;
-}
-
-.popularNext{
-  right: 0;
-  position: absolute;
-  top: 40%;
-}
-
-/* 명작 */
-.topPrev{
-  left: 0;
-  position: absolute;
-  top: 235%;
-}
-
-.topNext{
-  right: 0;
-  position: absolute;
-  top: 235%;
-}
-
-.upcomingPoster.animated,
-.nowPoster.animated,
-.popularPoster.animeted,
-.topPoster.animeted {
+.animated {
   transition: 0.5s ease-out;
 }
