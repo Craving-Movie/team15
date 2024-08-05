@@ -6,14 +6,56 @@ window.onload = async function () {
     document.getElementById("search-button").addEventListener("click", () => {
       const query = document.getElementById("search-input").value.toLowerCase();
       const movieCards = document.querySelectorAll(".moviePoster");
+      const containers = document.querySelectorAll(".Container");
+      const categoryTitles = document.querySelectorAll(".categoryTitle");
+      let matchedCardId = null; // 일치하는 카드의 ID를 저장할 변수
+      let matchCount = 0; // 일치하는 카드의 개수를 셀 변수
+
+      if (query === "") {
+        alert("검색어를 입력하세요.");
+        return;
+      }
       movieCards.forEach((card) => {
         const title = card.alt.toLowerCase();
+        const posterId = card.id;
         if (title.includes(query)) {
           card.style.display = "block";
+          matchCount++;
+          matchedCardId = posterId; // 일치하는 카드의 ID 저장
         } else {
           card.style.display = "none";
         }
       });
+
+      if (matchCount === 1) {
+        // 일치하는 카드가 한 장이라면 상세 페이지로 이동
+        window.location.href = `detailpage.html?id=${matchedCardId}`;
+      } else if (matchCount > 1) {
+        containers.forEach(function (container) {
+          const postersInContainer = container.querySelectorAll(".moviePoster");
+
+          let hasVisiblePoster = false;
+
+          // 컨테이너 내에 검색된 포스터가 있는지 확인
+          postersInContainer.forEach((poster) => {
+            if (poster.style.display === "block") {
+              hasVisiblePoster = true;
+            }
+          });
+
+          container.style.display = hasVisiblePoster ? "block" : "none";
+          //
+          const categoryTitle = container.previousElementSibling;
+          if (hasVisiblePoster) {
+            categoryTitle.style.display = "block";
+          } else if (categoryTitle) {
+            categoryTitle.style.display = "none";
+          }
+        });
+      } else if (matchCount === 0) {
+        alert(`<${query}>에 대한 검색 결과가 없습니다.`);
+        window.location.href = `index.html`;
+      }
     });
 
     // baseData 함수를 실행시켜 영화 기본 정보 로드
