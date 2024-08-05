@@ -1,5 +1,5 @@
 .posterDiv {
-  margin: 200px 0 100px 0;
+  margin: 200px 0 150px 0;
   height: auto;
   display: flex;
   justify-content: center;
@@ -41,6 +41,18 @@
   border-bottom: 3px solid #42abae;
   font-size: 18px;
   font-weight: bold;
+}
+
+.actorTitle {
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.actorTitle span {
+  padding-bottom: 5px;
+  border-bottom: 3px solid #fbbc14;
 }
 
 .actorContainer {

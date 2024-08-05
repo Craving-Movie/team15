@@ -67,7 +67,7 @@ function printDetail(movieDetails) {
       </div>
     </div>
     <div class="actorTitle">
-    출연 배우
+    <span>출연 배우</span>
     </div>
     <ul class="actorContainer">
       ${actorList}
@@ -80,4 +80,12 @@ function printDetail(movieDetails) {
 const titleLogo = document.querySelector(".titleLogo");
 titleLogo.addEventListener("click", function () {
   window.location.href = "index.html";
+});
+
+// top 버튼
+document.getElementById("top-btn").addEventListener("click", function () {
+  window.scroll({
+    behavior: "smooth",
+    top: 0
+  });
 });

@@ -5,7 +5,7 @@ window.onload = async function () {
     // 검색
     document.getElementById("search-button").addEventListener("click", () => {
       const query = document.getElementById("search-input").value.toLowerCase();
-      const movieCards = document.querySelectorAll(".moviePoster");
+      const movieCards = document.querySelectorAll(".movieWrapper");
       const slideBoxes = document.querySelectorAll(".slideBox");
       let matchedCardId = null; // 일치하는 카드의 ID를 저장할 변수
       let matchCount = 0; // 일치하는 카드의 개수를 셀 변수
@@ -15,7 +15,7 @@ window.onload = async function () {
         return;
       }
       movieCards.forEach((card) => {
-        const title = card.alt.toLowerCase();
+        const title = card.id.toLowerCase();
         const posterId = card.id;
         if (title.includes(query)) {
           card.style.display = "block";
@@ -32,7 +32,7 @@ window.onload = async function () {
       } else if (matchCount > 1) {
         // 일치하는 카드가 여러 장일 때
         slideBoxes.forEach((slideBox) => {
-          const postersInContainer = slideBox.querySelectorAll(".moviePoster");
+          const postersInContainer = slideBox.querySelectorAll(".movieWrapper");
           let hasVisiblePoster = false;
 
           // 슬라이드 박스 내에 검색된 포스터가 있는지 확인

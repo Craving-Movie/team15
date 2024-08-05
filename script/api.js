@@ -25,11 +25,55 @@ function fetchMovies(url, containerId, box) {
         img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
         img.alt = movie.title;
         img.id = movie.id;
-        img.addEventListener("click", () => {
+
+        // 추가한 부분: 영화 정보 표시를 위한 div생성
+        const infoDiv = document.createElement("div");
+        infoDiv.className = "wrap";
+        infoDiv.style.visibility = "hidden"; // 초기 상태를 숨김으로 설정
+        infoDiv.style.opacity = "0"; // 초기 상태를 투명으로 설정
+        infoDiv.style.transition = "opacity 0.3s"; // 부드러운 전환 효과
+
+        // 추가한 부분: 영화카드 마우스 오버시 나오는 영화 디테일
+        infoDiv.innerHTML = `
+            <h3 class="title">${movie.title}</h3>
+            <div class="summary">${movie.overview}</div>
+            <div class="score">
+            <div class="preview">
+                <p class="tit">⭐ 평점 <span class="number">${movie.vote_average.toFixed(
+                  2
+                )}<span class="ir">점</span></span></p>
+            </div>
+            </div>
+        `;
+
+        // 추가한 부분: 이미지와 정보를 포함하는 컨테이너 생성
+        const wrapper = document.createElement("div");
+        wrapper.className = "movieWrapper";
+        wrapper.id = movie.title;
+        wrapper.appendChild(img);
+        wrapper.appendChild(infoDiv);
+
+        // 추가한 부분: 마우스 오버 시 정보 표시
+        wrapper.addEventListener("mouseenter", () => {
+          infoDiv.style.visibility = "visible";
+          infoDiv.style.opacity = "1";
+          wrapper.style.transform = "scale(1.2)";
+          wrapper.style.boxShadow = "0 0 20px rgba(0, 0, 0, 0.5)";
+        });
+
+        // 추가한 부분: 마우스 아웃 시 정보 숨김
+        wrapper.addEventListener("mouseleave", () => {
+          infoDiv.style.visibility = "hidden";
+          infoDiv.style.opacity = "0";
+          wrapper.style.transform = "scale(1)";
+          wrapper.style.boxShadow = "none";
+        });
+
+        wrapper.addEventListener("click", () => {
           // 클릭 시 상세 페이지로 이동
           window.location.href = `detailpage.html?id=${movie.id}`;
         });
-        container.appendChild(img);
+        container.appendChild(wrapper);
       });
       slider(containerId, box);
     })
