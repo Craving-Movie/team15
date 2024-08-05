@@ -66,10 +66,11 @@ function slider(containerId, box) {
   let PrevBtn = document.querySelector(`#${box} .slideBtn .prev`);
   let NextBtn = document.querySelector(`#${box} .slideBtn .next`);
 
-  console.log("수정중2 => ", SlideCount);
+  console.log("수정중 => ", SlideCount);
 
   // 버튼 Event
   NextBtn.addEventListener("click", function () {
+    console.log(CurrentIdx);
     moveSlide(CurrentIdx + 5);
   });
   PrevBtn.addEventListener("click", function () {
@@ -83,13 +84,13 @@ function slider(containerId, box) {
 
     // 마지막 도달 시 첫 번째로 돌아가기
     if (CurrentIdx > SlideCount || CurrentIdx < 0) {
-      Slides.classList.remove("animated");
+      // Slides.classList.remove("animated");
       Slides.style.left = "0px";
       CurrentIdx = 0;
 
-      console.log("끝이니까 처음으로 돌아가자!2");
+      console.log("끝이니까 처음으로 돌아가자!");
 
-      Slides.classList.add("animated");
+      // Slides.classList.add("animated");
     }
   }
 }
