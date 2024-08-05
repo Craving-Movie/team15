@@ -1,5 +1,3 @@
-/*test*/
-
 * {
   font-family: "SUIT", sans-serif;
   font-weight: 500;
@@ -67,7 +65,7 @@ header {
 
 .categoryTitle {
   font-size: 25px;
-  margin: 20px 0 -40px 80px;
+  margin-left: 80px;
 }
 
 .movieBody {
@@ -77,15 +75,13 @@ header {
 
 .container {
   margin: 0;
-  height: 500px;
   display: flex;
   flex-direction: row;
-  /* align-items: center; */
-  /* overflow-x: scroll; */
+  align-items: center;
   padding-left: 70px;
   position: relative;
   transition: 0.5s ease-out;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 .Container::-webkit-scrollbar {
@@ -134,15 +130,15 @@ header {
 }
 
 .slideBtn span {
-  height: 360px;
+  height: 380px;
   width: 35px;
   background-color: rgb(0, 0, 0, 0.9);
   color: #fff;
-  padding: 10px 20px;
+  padding: 0 20px;
   cursor: pointer;
   position: absolute;
-  top: 45%;
-  transform: translateY(-49.5%);
+  top: 56%;
+  transform: translateY(-50%);
   z-index: 200;
   font-size: 30px;
   display: flex;
@@ -162,4 +158,93 @@ header {
 
 .animated {
   transition: 0.5s ease-out;
+}
+
+/* 정보 div 스타일 */
+.movieWrapper .wrap {
+  z-index: 777;
+  visibility: hidden;
+  /* 초기 상태: 숨김 */
+  opacity: 0;
+  /* 초기 투명도: 완전 투명 */
+  position: absolute;
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  color: #fff;
+  box-sizing: border-box;
+  transition: opacity 300ms ease-in-out, visibility 0s linear 300ms;
+  /* 300ms 후 visibility 변경 */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* z-index: 777;
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 25px;
+  color: #fff;
+  box-sizing: border-box;
+  transition: opacity 300ms ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8); */
+}
+
+.movieWrapper:hover .wrap {
+  transition-delay: 0s;
+  /* visibility 즉시 변경 */
+}
+
+/* 제목 스타일 */
+.movieWrapper .wrap .title {
+  margin-bottom: 10px;
+}
+
+/* 요약 스타일 ----- 말줄임표... 추가하기 */
+.movieWrapper .wrap .summary {
+  overflow: hidden;
+
+  height: 152px;
+  font-size: 14px;
+}
+
+/* 평점 스타일 */
+.movieWrapper .wrap .score {
+  overflow: hidden;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 0 0 0;
+  border-top: 1px solid #3c3c3c;
+  text-align: center;
+}
+
+
+
+/* footer */
+footer {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #353535;
+  padding: 10px 0;
+
+}
+
+footer .titleLogo {
+  width: 80px;
+  margin: 0;
+}
+
+.team-member {
+  font-size: 13px;
+  color: #d0d0d0;
 }
