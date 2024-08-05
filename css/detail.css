@@ -46,8 +46,10 @@
   flex-direction: row;
   justify-content: space-evenly;
   list-style: none;
+  padding: 0;
 }
 
 .actorImg {
-  width: 300px;
+  width: 200px;
+  border-radius: 15px;
 }

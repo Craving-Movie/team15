@@ -77,13 +77,28 @@ header {
   align-items: center;
   overflow-x: scroll;
   padding-left: 5vh;
+  position: relative;
 }
 
-.Container::-webkit-scrollbar {
+.Container1 {
+  margin: 0;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* overflow-x: scroll; */
+  padding-left: 90px;
+  position: relative;
+  transition: 0.5s ease-out;
+}
+
+.Container::-webkit-scrollbar,
+.Container1::-webkit-scrollbar {
   display: none;
 }
 
-.moviePoster {
+.moviePoster,
+.moviePoster1 {
   margin: 10px;
   float: left;
   position: relative;
@@ -94,7 +109,8 @@ header {
   cursor: pointer;
 }
 
-.moviePoster:hover {
+.moviePoster:hover,
+.moviePoster1:hover {
   transform: scale(1.2);
   z-index: 999;
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
@@ -114,4 +130,21 @@ header {
   border: 1px solid white;
   color: white;
   line-height: 120%;
+}
+
+/* 슬라이드 버튼 (확정 아님)*/
+.controls {
+  text-align: center;
+  margin-top: 50px;
+}
+.controls span {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.moviePoster1.animated {
+  transition: 0.5s ease-out;
 }
