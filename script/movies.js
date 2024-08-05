@@ -1,22 +1,6 @@
 import { fetchMovies, upcomingUrl, popularUrl, topUrl, nowUrl } from "./api.js";
 
 window.onload = async function () {
-  // window.onload = async function () {
-  //   try {
-  //     // 검색
-  //     document.getElementById("search-button").addEventListener("click", () => {
-  //       const query = document.getElementById("search-input").value.toLowerCase();
-  //       const movieCards = document.querySelectorAll(".moviePoster");
-  //       movieCards.forEach((card) => {
-  //         const title = card.alt.toLowerCase();
-  //         if (title.includes(query)) {
-  //           card.style.display = "block";
-  //         } else {
-  //           card.style.display = "none";
-  //         }
-  //       });
-  //     });
-
   try {
     // 검색
     document.getElementById("search-button").addEventListener("click", () => {
