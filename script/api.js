@@ -14,7 +14,7 @@ const topUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&
 const nowUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=ko&page=1&region=KR`;
 
 // 영화 목록을 불러오는 함수
-function fetchMovies(url, containerId) {
+function fetchMovies(url, containerId, box) {
   return fetch(url, options)
     .then((response) => response.json())
     .then((data) => {
@@ -31,6 +31,7 @@ function fetchMovies(url, containerId) {
         });
         container.appendChild(img);
       });
+      slider(containerId, box);
     })
     .catch((error) => console.error("Error fetching movies:", error));
 }
@@ -51,6 +52,45 @@ async function fetchMovieDetails(movieId) {
     };
   } catch (error) {
     console.error("영화 상세 정보를 가져오는 중 에러 발생:", error);
+  }
+}
+
+// 슬라이드에 쓸 변수들
+function slider(containerId, box) {
+  let Slides = document.getElementById(`${containerId}`);
+  let Slide = document.querySelectorAll(`#${containerId} .moviePoster`);
+  let CurrentIdx = 0;
+  let SlideCount = Slide.length;
+  let SlideWidth = 200;
+  let SlideMargin = 30;
+  let PrevBtn = document.querySelector(`#${box} .slideBtn .prev`);
+  let NextBtn = document.querySelector(`#${box} .slideBtn .next`);
+
+  console.log("수정중2 => ", SlideCount);
+
+  // 버튼 Event
+  NextBtn.addEventListener("click", function () {
+    moveSlide(CurrentIdx + 5);
+  });
+  PrevBtn.addEventListener("click", function () {
+    moveSlide(CurrentIdx - 5);
+  });
+
+  function moveSlide(num) {
+    Slides.style.left = -num * (SlideWidth + SlideMargin) + "px";
+    CurrentIdx = num;
+    console.log(CurrentIdx, SlideCount);
+
+    // 마지막 도달 시 첫 번째로 돌아가기
+    if (CurrentIdx > SlideCount || CurrentIdx < 0) {
+      Slides.classList.remove("animated");
+      Slides.style.left = "0px";
+      CurrentIdx = 0;
+
+      console.log("끝이니까 처음으로 돌아가자!2");
+
+      Slides.classList.add("animated");
+    }
   }
 }
 
