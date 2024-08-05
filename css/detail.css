@@ -53,8 +53,11 @@
 }
 
 .actorImg {
+  background-color: #dbdbdb;
+  background-size: 50%;
   width: 200px;
   border-radius: 15px;
+  height: 300px;
 }
 
 .posterImg {
