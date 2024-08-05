@@ -83,13 +83,8 @@ function slider(containerId, box) {
 
     // 마지막 도달 시 첫 번째로 돌아가기
     if (CurrentIdx > SlideCount || CurrentIdx < 0) {
-      Slides.classList.remove("animated");
       Slides.style.left = "0px";
       CurrentIdx = 0;
-
-      console.log("끝이니까 처음으로 돌아가자!2");
-
-      Slides.classList.add("animated");
     }
   }
 }

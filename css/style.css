@@ -82,8 +82,8 @@ header {
   /* overflow-x: scroll; */
   padding-left: 70px;
   position: relative;
-  transition: 0.5s ease-out;
   margin-top: 50px;
+  transition: 0.5s ease-out;
 }
 
 .Container::-webkit-scrollbar {
@@ -156,8 +156,4 @@ header {
 .prev {
   left: 0;
   border-radius: 0 15px 15px 0;
-}
-
-.animated {
-  transition: 0.5s ease-out;
 }
