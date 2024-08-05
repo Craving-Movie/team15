@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Box</title>
+    <title>당무땡</title>
     <link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUIT@2/fonts/static/woff2/SUIT.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/style.css" />
     <link
@@ -57,32 +57,42 @@
 
   <body>
     <div class="movieBody">
-      <!-- 개봉 예정작 -->
-      <div class="slideBox">
-        <p class="categoryTitle">개봉 예정작</p>
+      <div class="slideBox" id="popularBox">
+        <p class="categoryTitle">인기 영화</p>
         <!-- 슬라이더 부분 -->
-        <div id="upcomingContainer" class="Container"></div>
+        <div id="popularContainer" class="container animated"></div>
+        <p class="slideBtn">
+          <span class="prev">&lt;</span>
+          <span class="next">></span>
+        </p>
       </div>
-    </div>
-
-    <!-- 현재 상영작 -->
-    <div class="slideBox">
-      <p class="categoryTitle">절찬리 상영중!</p>
-      <!-- 슬라이더 부분 -->
-      <div id="nowContainer" class="Container"></div>
-    </div>
-    <!-- 현재 상영작 -->
-    <div class="slideBox">
-      <p class="categoryTitle">사람들이 가장 많이 본 영화</p>
-      <!-- 슬라이더 부분 -->
-      <div id="popularContainer" class="Container"></div>
-    </div>
-
-    <!-- 현재 상영작 -->
-    <div class="slideBox">
-      <p class="categoryTitle">안보면 후회하는 명작</p>
-      <!-- 슬라이더 부분 -->
-      <div id="topContainer" class="Container"></div>
+      <div class="slideBox" id="upBox">
+        <p class="categoryTitle">개봉 예정</p>
+        <!-- 슬라이더 부분 -->
+        <div id="upcomingContainer" class="container animated"></div>
+        <p class="slideBtn">
+          <span class="prev">&lt;</span>
+          <span class="next">></span>
+        </p>
+      </div>
+      <div class="slideBox" id="nowBox">
+        <p class="categoryTitle">현재 상영중</p>
+        <!-- 슬라이더 부분 -->
+        <div id="nowContainer" class="container animated"></div>
+        <p class="slideBtn">
+          <span class="prev">&lt;</span>
+          <span class="next">></span>
+        </p>
+      </div>
+      <div class="slideBox" id="topBox">
+        <p class="categoryTitle">명작 모음집</p>
+        <!-- 슬라이더 부분 -->
+        <div id="topContainer" class="container animated"></div>
+        <p class="slideBtn">
+          <span class="prev">&lt;</span>
+          <span class="next">></span>
+        </p>
+      </div>
     </div>
 
     <button id="top-btn" onclick="toTop()">▲<br />Top</button>

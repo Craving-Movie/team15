@@ -91,10 +91,10 @@ document.getElementById("top-btn").addEventListener("click", function () {
 // base-url에서 영화 기본 데이터 받아오기
 function baseData() {
   return Promise.all([
-    fetchMovies(upcomingUrl, "upcomingContainer"),
-    fetchMovies(nowUrl, "nowContainer"),
-    fetchMovies(topUrl, "topContainer"),
-    fetchMovies(popularUrl, "popularContainer")
+    fetchMovies(upcomingUrl, "upcomingContainer", "upBox"),
+    fetchMovies(nowUrl, "nowContainer", "nowBox"),
+    fetchMovies(topUrl, "topContainer", "topBox"),
+    fetchMovies(popularUrl, "popularContainer", "popularBox")
   ])
     .then(() => {
       console.log("영화 title, overview 등이 성공적으로 로드되었습니다.");
