@@ -20,20 +20,28 @@ window.onload = async function () {
 function printDetail(movieDetails) {
   const detaillWrap = document.querySelector(".detaillWrap");
   const actorList = movieDetails.cast
-    .filter(function (actor) {
-      return actor.profile_path !== null;
+    .map((actor) => {
+      let profileImage;
+      if (actor.profile_path) {
+        profileImage = `https://image.tmdb.org/t/p/w500${actor.profile_path}`;
+      } else {
+        if (actor.gender === 0) {
+          profileImage = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-4-user-grey-d8fe957375e70239d6abdd549fd7568c89281b2179b5f4470e2e12895792dfa5.svg`;
+        } else {
+          profileImage = `https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-36-user-female-grey-d9222f16ec16a33ed5e2c9bbdca07a4c48db14008bbebbabced8f8ed1fa2ad59.svg`;
+        }
+      }
+
+      return `
+  <li>
+    <img class="actorImg" src="${profileImage}" alt="${actor.name} 사진" />
+    <div class="actorInfo">
+      <p class="actorName">${actor.name}</p>
+      <p class="actorCharacter">역할: ${actor.character}</p>
+    </div>
+  </li>
+`;
     })
-    .map(
-      (actor) => `
-      <li>
-        <img class="actorImg" src="https://image.tmdb.org/t/p/w500${actor.profile_path}" alt="${actor.name} 사진" />
-        <div class="actorInfo">
-          <p class="actorName">${actor.name}</p>
-          <p class="actorCharacter">역할: ${actor.character}</p>
-        </div>
-      </li>
-    `
-    )
     .join(""); // 배열의 각 요소를 문자열로 결합
 
   // 상세 페이지 내용 생성
