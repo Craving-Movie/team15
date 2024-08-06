@@ -16,7 +16,7 @@ window.onload = async function () {
       }
       movieCards.forEach((card) => {
         const title = card.id.toLowerCase();
-        const posterId = card.id;
+        const posterId = card.querySelector(".moviePoster").id;
         if (title.includes(query)) {
           card.style.display = "block";
           matchCount++;
