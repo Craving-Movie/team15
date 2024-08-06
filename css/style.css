@@ -143,12 +143,16 @@ header {
   margin-bottom: 10px;
 }
 
-/* 요약 스타일 ----- 말줄임표... 추가하기 */
+/* 요약 스타일 */
 .movieWrapper .wrap .summary {
   overflow: hidden;
   height: 152px;
   font-size: 14px;
   text-align: justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 /* 평점 스타일 */

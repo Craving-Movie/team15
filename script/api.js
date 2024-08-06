@@ -112,6 +112,44 @@ function slider(containerId, box) {
 
   console.log("수정중 => ", slideCount);
 
+  // 슬라이드 복제
+  makeClone();
+  function makeClone() {
+    for (let i = 0; i < slideCount; i++) {
+      let cloneSlide = slide[i].cloneNode(true);
+      cloneSlide.classList.add("clone");
+      slides.appendChild(cloneSlide);
+    }
+    // index 번호 4번은 슬라이드 05임
+    // slideCount -1 초기값
+    for (let i = slideCount - 1; i >= 0; i--) {
+      let cloneSlide = slide[i].cloneNode(true);
+      cloneSlide.classList.add("clone");
+      // 원래 있던 요소의 앞에 추가
+      // slides.prepend(cloneSlide);
+    }
+    updateWidth();
+    // setinit();
+    setTimeout(function () {
+      slides.classList.add("animated");
+    }, 100);
+  }
+  
+  // 전체 너비를 구해서 포스터의 너비를 지정하는 함수
+  function updateWidth() {
+    let currentSlides = document.querySelectorAll(`${containerId} .moviePoster`);
+    let newSlideCount = currentSlides.length;
+    let newWidth = (slideWidth + slideMargin) * newSlideCount - slideMargin + "px";
+    slides.style.width = newWidth;
+  }
+
+  // 초기 위치 잡는 함수
+  function setinit() {
+    // 왼쪽으로 움직일 거니까 '-' 붙임
+    let TranslateValue = (slideWidth + slideMargin) * slideCount;
+    slides.style.transform = "translateX(" + TranslateValue + "px)";
+  }
+
   // 버튼 Event
   nextBtn.addEventListener("click", function () {
     console.log(currentIdx);

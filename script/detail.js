@@ -38,7 +38,9 @@ function printDetail(movieDetails) {
     <img class="actorImg" src="${profileImage}" alt="${actor.name} 사진" />
     <div class="actorInfo">
       <p class="actorName">${actor.name}</p>
-      <p class="actorCharacter">${actor.character.replaceAll("/", "역<br>")} 역</p>
+      <p class="actorCharacter">${
+        actor.character.length > 0 ? actor.character.replaceAll("/", "역<br>") + " 역" : ""
+      }</p>
     </div>
   </li>
 `;
