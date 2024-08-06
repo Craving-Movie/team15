@@ -99,67 +99,119 @@ async function fetchMovieDetails(movieId) {
   }
 }
 
+// 슬라이드 이동 범위 = 한 화면에 들어가는 카드 갯수 * 카드 넓이
+// 카드 넓이 = 285 (마진값 포함)
+// 디스플레이 폭 = 100vw - 80px (왼쪽 패딩값 제외) / 카드 넓이 265 = 몫 (한 화면에 들어가는 카드 갯수) 소숫점은 버리기
+// 카드 갯수 20개 / 몫 (한 화면 카드 갯수) = 몫2 (필요한 클릭 횟수) 나머지2 (남는 포스터 갯수)
+// 나머지가 있을 경우 - 클릭 횟수 = 몫2 + 1 나머지2 x 285 이동하면 끝에 도달 / 몫 + 2 일 경우 처음으로 초기화
+// 나머지가 없을 경우 - 클릭 횟수 = 몫 + 1 일 때 처음으로 초기화
+
 // 슬라이드에 쓸 변수들
 function slider(containerId, box) {
+  function getWidth() {
+    const vwInPx = (100 / 100) * window.innerWidth; // 100vw 픽셀로 변환
+    const slideWidth = vwInPx - 140; //140px 빼기
+    return slideWidth;
+  }
+
   let slides = document.getElementById(`${containerId}`);
-  let slide = document.querySelectorAll(`#${containerId} .movieWrapper`);
-  let currentIdx = 0;
-  let slideCount = slide.length;
-  let slideWidth = 200;
-  let slideMargin = 30;
-  let prevBtn = document.querySelector(`#${box} .slideBtn .prev`);
-  let nextBtn = document.querySelector(`#${box} .slideBtn .next`);
+  let slide = document.querySelectorAll(`#${containerId} .moviePoster`);
+  let NextBtn = document.querySelector(`#${box} .slideBtn .next`);
+  let PrevBtn = document.querySelector(`#${box} .slideBtn .prev`);
+  // 카드 한 개 넓이
+  let cardWidth = 285;
+  // 디스플레이 넓이
+  let display = getWidth();
+  // 한 화면에 들어가는 카드 갯수
+  let onedisCard = display / cardWidth;
+  // 총 카드 갯수
+  let totalCard = slide.length;
+  // 클릭 횟수 계산
+  let clickSlide = Math.floor(totalCard / onedisCard);
+  let spareCard = totalCard % onedisCard;
+  // 카드 남는지 안 남는지 계산
+  let totalClick = spareCard === 0 ? clickSlide : clickSlide + 1;
+  // 나머지 카드 넓이
+  let spareCardWidth = spareCard * cardWidth;
+  // 슬라이드 이동 넓이
+  let moveWidth = onedisCard * cardWidth;
 
-  console.log("수정중 => ", slideCount);
+  console.log(`디스플레이 넓이: ${display}px`);
+  console.log(`한 화면에 들어가는 카드 갯수: ${onedisCard}`);
+  console.log(`총 필요한 클릭 횟수: ${totalClick}`);
+  console.log(`나머지 카드: ${spareCard}`);
+  console.log(`슬라이드 이동 넓이: ${moveWidth}`);
+  console.log(`마지막 이동 넓이: ${spareCardWidth}`);
 
-  // // 슬라이드 복제- 여기부터
-  // makeClone();
-  // function makeClone() {
-  //   for (let i = 0; i < slideCount; i++) {
-  //     let cloneSlide = slide[i].cloneNode(true);
-  //     cloneSlide.classList.add("clone");
-  //     slides.appendChild(cloneSlide);
-  //   }
-  //   // slideCount -1 초기값
-  //   for (let i = slideCount - 1; i >= 0; i--) {
-  //     let cloneSlide = slide[i].cloneNode(true);
-  //     cloneSlide.classList.add("clone");
-  //     // 원래 있던 요소의 앞에 추가
-  //     // slides.prepend(cloneSlide);
-  //   }
-  //   updateWidth();
-  // }
-  
-  // // 전체 너비를 구해서 포스터의 너비를 지정하는 함수
-  // function updateWidth() {
-  //   let currentSlides = document.querySelectorAll(`${containerId} .movieWrapper`);
-  //   let newSlideCount = currentSlides.length;
-  //   let newWidth = (slideWidth + slideMargin) * newSlideCount - slideMargin + "px";
-  //   slides.style.width = newWidth;
-  // } // -여기까지
+  let clickCount = 0;
 
-  // 버튼 Event
-  
-  nextBtn.addEventListener("click", function () {
-    console.log(currentIdx);
-    moveSlide(currentIdx + 5);
+  NextBtn.addEventListener("click", function () {
+    moveSlide(clickCount + 1);
   });
-  prevBtn.addEventListener("click", function () {
-    moveSlide(currentIdx - 5);
+  PrevBtn.addEventListener("click", function () {
+    moveSlide(clickCount - 1);
   });
 
-  function moveSlide(num) {
-    slides.style.left = -num * (slideWidth + slideMargin) + "px";
-    currentIdx = num;
-    console.log(currentIdx, slideCount);
-
-    // 마지막 도달 시 첫 번째로 돌아가기
-    if (currentIdx > slideCount || currentIdx < 0) {
-      slides.style.left = "0px";
-      currentIdx = 0;
-
-      console.log("끝이니까 처음으로 돌아가자!");
+  function moveSlide(click) {
+    if (spareCard == 0) {
+      slides.style.left = -1 * click * moveWidth + "px";
+      clickCount = click;
+    } else {
+      slides.style.left = -1 * click * moveWidth + "px";
+      clickCount = click;
+      if (click === totalClick - 1) {
+        slides.style.left = -1 * (click - 1) * moveWidth - spareCardWidth + "px";
+      }
     }
+
+    if (clickCount === totalClick || clickCount < 0) {
+      slides.style.left = 0;
+      clickCount = 0;
+    }
+    console.log(slides.style.left, clickCount);
   }
 }
+// let Slides = document.getElementById(`${containerId}`);
+// let Slide = document.querySelectorAll(`#${containerId} .moviePoster`);
+// let CurrentIdx = 0;
+// let SlideCount = Slide.length;
+// let SlideWidth = 200;
+// let SlideMargin = 30;
+// let PrevBtn = document.querySelector(`#${box} .slideBtn .prev`);
+// let NextBtn = document.querySelector(`#${box} .slideBtn .next`);}
+
+//   console.log("수정중 => ", SlideCount);
+
+//   // 버튼 Event
+//   NextBtn.addEventListener("click", function () {
+//     console.log(CurrentIdx);
+//     moveSlide(CurrentIdx + 5);
+//   });
+//   PrevBtn.addEventListener("click", function () {
+//     moveSlide(CurrentIdx - 5);
+//   });
+
+//   function moveSlide(num) {
+//     const yposition = -num * (SlideWidth + SlideMargin);
+//     Slides.style.left = -num * (SlideWidth + SlideMargin) + "px";
+//     CurrentIdx = num;
+//     console.log(CurrentIdx, SlideCount);
+
+//     if (yposition <= -4600) {
+//       console.log("못지나간다");
+//     }
+
+//     // 마지막 도달 시 첫 번째로 돌아가기
+//     if (CurrentIdx > SlideCount || CurrentIdx < 0) {
+//       // Slides.classList.remove("animated");
+//       Slides.style.left = "0px";
+//       CurrentIdx = 0;
+
+//       console.log("끝이니까 처음으로 돌아가자!");
+
+//       // Slides.classList.add("animated");
+//     }
+//   }
+// }
+
 export { fetchMovies, fetchMovieDetails, upcomingUrl, popularUrl, topUrl, nowUrl };
