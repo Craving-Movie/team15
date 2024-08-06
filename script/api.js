@@ -101,7 +101,7 @@ async function fetchMovieDetails(movieId) {
 
 // 슬라이드 이동 범위 = 한 화면에 들어가는 카드 갯수 * 카드 넓이
 // 카드 넓이 = 285 (마진값 포함)
-// 디스플레이 폭 = 100vw - 80px (왼쪽 패딩값 제외) / 카드 넓이 265 = 몫 (한 화면에 들어가는 카드 갯수) 소숫점은 버리기
+// 디스플레이 폭 = 100vw - 140 (양쪽 버튼만큼 제외) / 카드 넓이 285 = 몫 (한 화면에 들어가는 카드 갯수)
 // 카드 갯수 20개 / 몫 (한 화면 카드 갯수) = 몫2 (필요한 클릭 횟수) 나머지2 (남는 포스터 갯수)
 // 나머지가 있을 경우 - 클릭 횟수 = 몫2 + 1 나머지2 x 285 이동하면 끝에 도달 / 몫 + 2 일 경우 처음으로 초기화
 // 나머지가 없을 경우 - 클릭 횟수 = 몫 + 1 일 때 처음으로 초기화
@@ -134,7 +134,7 @@ function slider(containerId, box) {
   // 나머지 카드 넓이
   let spareCardWidth = spareCard * cardWidth;
   // 슬라이드 이동 넓이
-  let moveWidth = onedisCard * cardWidth;
+  let moveWidth = onedisCard * cardWidth - 200;
 
   console.log(`디스플레이 넓이: ${display}px`);
   console.log(`한 화면에 들어가는 카드 갯수: ${onedisCard}`);
@@ -160,7 +160,7 @@ function slider(containerId, box) {
       slides.style.left = -1 * click * moveWidth + "px";
       clickCount = click;
       if (click === totalClick - 1) {
-        slides.style.left = -1 * (click - 1) * moveWidth - spareCardWidth + "px";
+        slides.style.left = -1 * (click - 1) * moveWidth - spareCardWidth - 200 * (click - 1) + "px";
       }
     }
 
