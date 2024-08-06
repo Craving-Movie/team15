@@ -82,12 +82,56 @@ function loadComments(movieId) {
       <p class="commentUser" id="commentUser">${comment.user}</p>
       <p class="commentTime" id="commentTime">${comment.time}</p>
     </div>
-      <button class="edit" id="commentEdit">수정</button>
-      <button class="del" id="commentDel">삭제</button>
+      <button class="edit" id="commentEdit" data-time="${comment.time}">수정</button>
+      <button class="del" id="commentDel" data-time="${comment.time}">삭제</button>
     `;
 
     commentList.appendChild(listItem);
   });
+  document.querySelectorAll("#commentEdit").forEach((button) => {
+    button.addEventListener("click", editComment);
+  });
+
+  document.querySelectorAll("#commentDel").forEach((button) => {
+    button.addEventListener("click", deleteComment);
+  });
+}
+
+function editComment(event) {
+  const editTime = event.target.getAttribute("data-time");
+  let comments = getComments(movieId);
+  const comment = comments.find((comment) => comment.time === editTime);
+
+  if (comment) {
+    const password = prompt("비밀번호 확인");
+    if (password === comment.password) {
+      const newComment = prompt("새로운 댓글 내용을 입력하세요", comment.comment);
+      if (newComment) {
+        comment.comment = newComment;
+        localStorage.setItem(`${movieId}_comment`, JSON.stringify(comments));
+        loadComments(movieId);
+      }
+    } else {
+      alert("비밀번호가 일치하지 않습니다");
+    }
+  }
+}
+
+function deleteComment(event) {
+  const deleteTime = event.target.getAttribute("data-time");
+  let comments = getComments(movieId);
+  const commentIndex = comments.findIndex((comment) => comment.time === deleteTime);
+
+  if (commentIndex !== -1) {
+    const password = prompt("비밀번호 확인");
+    if (password === comments[commentIndex].password) {
+      comments.splice(commentIndex, 1);
+      localStorage.setItem(`${movieId}_comment`, JSON.stringify(comments));
+      loadComments(movieId);
+    } else {
+      alert("비밀번호가 일치하지 않습니다");
+    }
+  }
 }
 
 async function boxToggle() {
@@ -95,6 +139,6 @@ async function boxToggle() {
   const box = document.getElementById("commnetWrite");
 
   btn.addEventListener("click", () => {
-    box.style.display === "none" ? (box.style.display = "flex") : (box.style.display = "none");
+    box.style.display = box.style.display === "none" ? "flex" : "none";
   });
 }

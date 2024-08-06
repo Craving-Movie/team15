@@ -44,6 +44,7 @@ header {
   background-image: url("data:image/svg+xml,%3Csvg width='150' height='67' viewBox='0 0 186 67' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M175.161 9.8272C169.062 9.8272 162.594 11.8874 156.162 11.8874C147.539 11.8874 139.019 11.1315 130.409 10.6284C115.962 9.78406 101.373 10.564 86.9736 9.25492C72.6833 7.95581 58.395 6.81711 44.11 5.47789C38.4335 4.94572 33.1077 3.64661 27.4567 3.64661C21.947 3.64661 17.0015 4.93883 11.4902 5.7068C10.39 5.86011 4.24992 5.72972 4.16503 7.767C3.87597 14.7045 4.16503 21.7119 4.16503 28.6551C4.16503 34.6876 1.6158 49.7209 6.68305 54.0642C10.7189 57.5236 20.8328 56.6136 25.7971 56.9829C42.4841 58.224 59.3176 58.8756 75.9286 60.8171C99.7755 63.6044 123.959 62.1464 147.921 62.3623C154.387 62.4205 160.795 63.3257 167.264 63.3924C169.024 63.4105 174.107 64.3327 175.619 62.8201C178.123 60.3168 178.591 47.2401 179.053 43.5916C179.977 36.2957 180.815 28.9261 181.399 21.6161C181.694 17.9362 183.496 11.9343 179.282 9.8272' stroke='%23fbbc14' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
   padding-left: 10px;
+  color: white;
 }
 
 #search-input:focus {
@@ -61,16 +62,18 @@ header {
 /* 영화 카드들 부분 */
 .slideBox {
   position: relative;
+  margin-top: 100px;
 }
 
 .categoryTitle {
   font-size: 25px;
-  margin-left: 80px;
+  margin-left: 85px;
 }
 
 .movieBody {
   width: auto;
-  margin-top: 150px;
+  margin-top: 180px;
+  padding-bottom: 100px;
 }
 
 .container {
@@ -81,6 +84,7 @@ header {
   padding-left: 70px;
   position: relative;
   transition: 0.5s ease-out;
+  left: 0;
   /* margin-top: 50px; */
 }
 
@@ -89,17 +93,74 @@ header {
 }
 
 .moviePoster {
-  margin: 10px;
   position: relative;
   height: 380px;
   border-radius: 10px;
   transition: 300ms;
 }
 
-.moviePoster:hover {
+.movieWrapper:hover {
   transform: scale(1.2);
   z-index: 100;
   box-shadow: 0 0 20px rgb(0, 0, 0, 0.5);
+}
+
+.movieWrapper {
+  padding: 0;
+  height: 380px;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+/* 정보 div 스타일 */
+.movieWrapper .wrap {
+  width: 100%;
+  visibility: hidden;
+  /* 초기 상태: 숨김 */
+  opacity: 0;
+  /* 초기 투명도: 완전 투명 */
+  position: absolute;
+  border-radius: 10px;
+  left: 0;
+  top: 0;
+  height: 380px;
+  padding: 25px;
+  color: #fff;
+  box-sizing: border-box;
+  transition: opacity 300ms ease-in-out, visibility 0s linear 300ms;
+  /* 300ms 후 visibility 변경 */
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+.movieWrapper:hover .wrap {
+  transition-delay: 0s;
+  /* visibility 즉시 변경 */
+}
+
+/* 제목 스타일 */
+.movieWrapper .wrap .title {
+  margin-bottom: 10px;
+}
+
+/* 요약 스타일 ----- 말줄임표... 추가하기 */
+.movieWrapper .wrap .summary {
+  overflow: hidden;
+  height: 152px;
+  font-size: 14px;
+  text-align: justify;
+}
+
+/* 평점 스타일 */
+.movieWrapper .wrap .score {
+  overflow: hidden;
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 0 0 0;
+  border-top: 1px solid #3c3c3c;
+  text-align: center;
 }
 
 /* .upcomingList div:not,
@@ -123,7 +184,7 @@ header {
   line-height: 120%;
 }
 
-/* 슬라이드 버튼 (확정 아님)*/
+/* 슬라이드 버튼*/
 .slideBtn {
   text-align: center;
   margin-top: 50px;
@@ -131,13 +192,13 @@ header {
 
 .slideBtn span {
   height: 380px;
-  width: 35px;
-  background-color: rgb(0, 0, 0, 0.9);
+  width: 30px;
+  background-color: rgb(0, 0, 0, 0.7);
   color: #fff;
   padding: 0 20px;
   cursor: pointer;
   position: absolute;
-  top: 56%;
+  top: 57.3%;
   transform: translateY(-50%);
   z-index: 200;
   font-size: 30px;
@@ -156,60 +217,9 @@ header {
   border-radius: 0 15px 15px 0;
 }
 
-.animated {
+/* .animated {
   transition: 0.5s ease-out;
 }
-
-/* 정보 div 스타일 */
-.movieWrapper .wrap {
-  z-index: 777;
-  visibility: hidden;
-  /* 초기 상태: 숨김 */
-  opacity: 0;
-  /* 초기 투명도: 완전 투명 */
-  position: absolute;
-  border-radius: 10px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  padding: 25px;
-  color: #fff;
-  box-sizing: border-box;
-  transition: opacity 300ms ease-in-out, visibility 0s linear 300ms;
-  /* 300ms 후 visibility 변경 */
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-.movieWrapper:hover .wrap {
-  transition-delay: 0s;
-  /* visibility 즉시 변경 */
-}
-
-/* 제목 스타일 */
-.movieWrapper .wrap .title {
-  margin-bottom: 10px;
-}
-
-/* 요약 스타일 ----- 말줄임표... 추가하기 */
-.movieWrapper .wrap .summary {
-  overflow: hidden;
-  height: 152px;
-  font-size: 14px;
-}
-
-/* 평점 스타일 */
-.movieWrapper .wrap .score {
-  overflow: hidden;
-  position: absolute;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
-  padding: 10px 0 0 0;
-  border-top: 1px solid #3c3c3c;
-  text-align: center;
-}
-
 
 
 /* footer */
@@ -221,7 +231,6 @@ footer {
   align-items: center;
   background-color: #353535;
   padding: 10px 0;
-
 }
 
 footer .titleLogo {

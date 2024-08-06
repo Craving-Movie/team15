@@ -25,7 +25,7 @@ function fetchMovies(url, containerId, box) {
         img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
         img.alt = movie.title;
         img.id = movie.id;
-          
+
         // 추가한 부분: 영화 정보 표시를 위한 div생성
         const infoDiv = document.createElement("div");
         infoDiv.className = "wrap";
@@ -39,7 +39,9 @@ function fetchMovies(url, containerId, box) {
             <div class="summary">${movie.overview}</div>
             <div class="score">
             <div class="preview">
-                <p class="tit">⭐ 평점 <span class="number">${movie.vote_average.toFixed(2)}<span class="ir">점</span></span></p>
+                <p class="tit">⭐ 평점 <span class="number">${movie.vote_average.toFixed(
+                  2
+                )}<span class="ir">점</span></span></p>
             </div>
             </div>
         `;
@@ -47,26 +49,27 @@ function fetchMovies(url, containerId, box) {
         // 추가한 부분: 이미지와 정보를 포함하는 컨테이너 생성
         const wrapper = document.createElement("div");
         wrapper.className = "movieWrapper";
+        wrapper.id = movie.title;
         wrapper.appendChild(img);
         wrapper.appendChild(infoDiv);
 
         // 추가한 부분: 마우스 오버 시 정보 표시
         wrapper.addEventListener("mouseenter", () => {
-            infoDiv.style.visibility = 'visible';
-            infoDiv.style.opacity = '1';
-            wrapper.style.transform = 'scale(1.2)';
-            wrapper.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.5)';
+          infoDiv.style.visibility = "visible";
+          infoDiv.style.opacity = "1";
+          wrapper.style.transform = "scale(1.2)";
+          wrapper.style.boxShadow = "0 0 20px rgba(0, 0, 0, 0.5)";
         });
 
         // 추가한 부분: 마우스 아웃 시 정보 숨김
         wrapper.addEventListener("mouseleave", () => {
-            infoDiv.style.visibility = 'hidden';
-            infoDiv.style.opacity = '0';
-            wrapper.style.transform = 'scale(1)';
-            wrapper.style.boxShadow = 'none';
+          infoDiv.style.visibility = "hidden";
+          infoDiv.style.opacity = "0";
+          wrapper.style.transform = "scale(1)";
+          wrapper.style.boxShadow = "none";
         });
-          
-        img.addEventListener("click", () => {
+
+        wrapper.addEventListener("click", () => {
           // 클릭 시 상세 페이지로 이동
           window.location.href = `detailpage.html?id=${movie.id}`;
         });
@@ -107,10 +110,11 @@ function slider(containerId, box) {
   let PrevBtn = document.querySelector(`#${box} .slideBtn .prev`);
   let NextBtn = document.querySelector(`#${box} .slideBtn .next`);
 
-  console.log("수정중2 => ", SlideCount);
+  console.log("수정중 => ", SlideCount);
 
   // 버튼 Event
   NextBtn.addEventListener("click", function () {
+    console.log(CurrentIdx);
     moveSlide(CurrentIdx + 5);
   });
   PrevBtn.addEventListener("click", function () {
@@ -124,13 +128,13 @@ function slider(containerId, box) {
 
     // 마지막 도달 시 첫 번째로 돌아가기
     if (CurrentIdx > SlideCount || CurrentIdx < 0) {
-      Slides.classList.remove("animated");
+      // Slides.classList.remove("animated");
       Slides.style.left = "0px";
       CurrentIdx = 0;
 
-      console.log("끝이니까 처음으로 돌아가자!2");
+      console.log("끝이니까 처음으로 돌아가자!");
 
-      Slides.classList.add("animated");
+      // Slides.classList.add("animated");
     }
   }
 }
