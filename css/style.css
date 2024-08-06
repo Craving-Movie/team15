@@ -81,6 +81,7 @@ header {
   padding-left: 70px;
   position: relative;
   transition: 0.5s ease-out;
+  left: 0;
   /* margin-top: 50px; */
 }
 
@@ -123,7 +124,7 @@ header {
   line-height: 120%;
 }
 
-/* 슬라이드 버튼 (확정 아님)*/
+/* 슬라이드 버튼*/
 .slideBtn {
   text-align: center;
   margin-top: 50px;
@@ -156,7 +157,7 @@ header {
   border-radius: 0 15px 15px 0;
 }
 
-.animated {
+/* .animated {
   transition: 0.5s ease-out;
 }
 
