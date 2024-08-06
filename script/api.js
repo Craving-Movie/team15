@@ -101,40 +101,40 @@ async function fetchMovieDetails(movieId) {
 
 // 슬라이드에 쓸 변수들
 function slider(containerId, box) {
-  let Slides = document.getElementById(`${containerId}`);
-  let Slide = document.querySelectorAll(`#${containerId} .moviePoster`);
-  let CurrentIdx = 0;
-  let SlideCount = Slide.length;
-  let SlideWidth = 200;
-  let SlideMargin = 30;
-  let PrevBtn = document.querySelector(`#${box} .slideBtn .prev`);
-  let NextBtn = document.querySelector(`#${box} .slideBtn .next`);
+  let slides = document.getElementById(`${containerId}`);
+  let slide = document.querySelectorAll(`#${containerId} .moviePoster`);
+  let currentIdx = 0;
+  let slideCount = slide.length;
+  let slideWidth = 200;
+  let slideMargin = 30;
+  let prevBtn = document.querySelector(`#${box} .slideBtn .prev`);
+  let nextBtn = document.querySelector(`#${box} .slideBtn .next`);
 
-  console.log("수정중 => ", SlideCount);
+  console.log("수정중 => ", slideCount);
 
   // 버튼 Event
-  NextBtn.addEventListener("click", function () {
-    console.log(CurrentIdx);
-    moveSlide(CurrentIdx + 5);
+  nextBtn.addEventListener("click", function () {
+    console.log(currentIdx);
+    moveSlide(currentIdx + 5);
   });
-  PrevBtn.addEventListener("click", function () {
-    moveSlide(CurrentIdx - 5);
+  prevBtn.addEventListener("click", function () {
+    moveSlide(currentIdx - 5);
   });
 
   function moveSlide(num) {
-    Slides.style.left = -num * (SlideWidth + SlideMargin) + "px";
-    CurrentIdx = num;
-    console.log(CurrentIdx, SlideCount);
+    slides.style.left = -num * (slideWidth + slideMargin) + "px";
+    currentIdx = num;
+    console.log(currentIdx, slideCount);
 
     // 마지막 도달 시 첫 번째로 돌아가기
-    if (CurrentIdx > SlideCount || CurrentIdx < 0) {
-      // Slides.classList.remove("animated");
-      Slides.style.left = "0px";
-      CurrentIdx = 0;
+    if (currentIdx > slideCount || currentIdx < 0) {
+      slides.classList.remove("animated");
+      slides.style.left = "0px";
+      currentIdx = 0;
 
       console.log("끝이니까 처음으로 돌아가자!");
 
-      // Slides.classList.add("animated");
+      slides.classList.add("animated");
     }
   }
 }
