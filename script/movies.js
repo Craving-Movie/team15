@@ -5,9 +5,8 @@ window.onload = async function () {
     // 검색
     document.getElementById("search-button").addEventListener("click", () => {
       const query = document.getElementById("search-input").value.toLowerCase();
-      const movieCards = document.querySelectorAll(".moviePoster");
-      const containers = document.querySelectorAll(".Container");
-      const categoryTitles = document.querySelectorAll(".categoryTitle");
+      const movieCards = document.querySelectorAll(".movieWrapper");
+      const slideBoxes = document.querySelectorAll(".slideBox");
       let matchedCardId = null; // 일치하는 카드의 ID를 저장할 변수
       let matchCount = 0; // 일치하는 카드의 개수를 셀 변수
 
@@ -16,7 +15,7 @@ window.onload = async function () {
         return;
       }
       movieCards.forEach((card) => {
-        const title = card.alt.toLowerCase();
+        const title = card.id.toLowerCase();
         const posterId = card.id;
         if (title.includes(query)) {
           card.style.display = "block";
@@ -31,26 +30,19 @@ window.onload = async function () {
         // 일치하는 카드가 한 장이라면 상세 페이지로 이동
         window.location.href = `detailpage.html?id=${matchedCardId}`;
       } else if (matchCount > 1) {
-        containers.forEach(function (container) {
-          const postersInContainer = container.querySelectorAll(".moviePoster");
-
+        // 일치하는 카드가 여러 장일 때
+        slideBoxes.forEach((slideBox) => {
+          const postersInContainer = slideBox.querySelectorAll(".movieWrapper");
           let hasVisiblePoster = false;
 
-          // 컨테이너 내에 검색된 포스터가 있는지 확인
+          // 슬라이드 박스 내에 검색된 포스터가 있는지 확인
           postersInContainer.forEach((poster) => {
             if (poster.style.display === "block") {
               hasVisiblePoster = true;
             }
           });
 
-          container.style.display = hasVisiblePoster ? "block" : "none";
-          //
-          const categoryTitle = container.previousElementSibling;
-          if (hasVisiblePoster) {
-            categoryTitle.style.display = "block";
-          } else if (categoryTitle) {
-            categoryTitle.style.display = "none";
-          }
+          slideBox.style.display = hasVisiblePoster ? "block" : "none";
         });
       } else if (matchCount === 0) {
         alert(`<${query}>에 대한 검색 결과가 없습니다.`);

@@ -5,7 +5,7 @@
 }
 
 .comment {
-  margin: 5vh 10vh 5vh 10vh;
+  margin: 10vh 10vh 5vh 10vh;
 }
 
 .commentBody {
@@ -66,6 +66,7 @@
   width: 45px;
   color: white;
   font-weight: 200;
+  cursor: pointer;
 }
 
 .commentBox > .del {
