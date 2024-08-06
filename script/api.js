@@ -102,7 +102,7 @@ async function fetchMovieDetails(movieId) {
 // 슬라이드에 쓸 변수들
 function slider(containerId, box) {
   let slides = document.getElementById(`${containerId}`);
-  let slide = document.querySelectorAll(`#${containerId} .moviePoster`);
+  let slide = document.querySelectorAll(`#${containerId} .movieWrapper`);
   let currentIdx = 0;
   let slideCount = slide.length;
   let slideWidth = 200;
@@ -112,43 +112,31 @@ function slider(containerId, box) {
 
   console.log("수정중 => ", slideCount);
 
-  // 슬라이드 복제
-  makeClone();
-  function makeClone() {
-    for (let i = 0; i < slideCount; i++) {
-      let cloneSlide = slide[i].cloneNode(true);
-      cloneSlide.classList.add("clone");
-      slides.appendChild(cloneSlide);
-    }
-    // index 번호 4번은 슬라이드 05임
-    // slideCount -1 초기값
-    for (let i = slideCount - 1; i >= 0; i--) {
-      let cloneSlide = slide[i].cloneNode(true);
-      cloneSlide.classList.add("clone");
-      // 원래 있던 요소의 앞에 추가
-      // slides.prepend(cloneSlide);
-    }
-    updateWidth();
-    // setinit();
-    setTimeout(function () {
-      slides.classList.add("animated");
-    }, 100);
-  }
+  // // 슬라이드 복제- 여기부터
+  // makeClone();
+  // function makeClone() {
+  //   for (let i = 0; i < slideCount; i++) {
+  //     let cloneSlide = slide[i].cloneNode(true);
+  //     cloneSlide.classList.add("clone");
+  //     slides.appendChild(cloneSlide);
+  //   }
+  //   // slideCount -1 초기값
+  //   for (let i = slideCount - 1; i >= 0; i--) {
+  //     let cloneSlide = slide[i].cloneNode(true);
+  //     cloneSlide.classList.add("clone");
+  //     // 원래 있던 요소의 앞에 추가
+  //     // slides.prepend(cloneSlide);
+  //   }
+  //   updateWidth();
+  // }
   
-  // 전체 너비를 구해서 포스터의 너비를 지정하는 함수
-  function updateWidth() {
-    let currentSlides = document.querySelectorAll(`${containerId} .moviePoster`);
-    let newSlideCount = currentSlides.length;
-    let newWidth = (slideWidth + slideMargin) * newSlideCount - slideMargin + "px";
-    slides.style.width = newWidth;
-  }
-
-  // 초기 위치 잡는 함수
-  function setinit() {
-    // 왼쪽으로 움직일 거니까 '-' 붙임
-    let TranslateValue = (slideWidth + slideMargin) * slideCount;
-    slides.style.transform = "translateX(" + TranslateValue + "px)";
-  }
+  // // 전체 너비를 구해서 포스터의 너비를 지정하는 함수
+  // function updateWidth() {
+  //   let currentSlides = document.querySelectorAll(`${containerId} .movieWrapper`);
+  //   let newSlideCount = currentSlides.length;
+  //   let newWidth = (slideWidth + slideMargin) * newSlideCount - slideMargin + "px";
+  //   slides.style.width = newWidth;
+  // } // -여기까지
 
   // 버튼 Event
   nextBtn.addEventListener("click", function () {
@@ -166,15 +154,11 @@ function slider(containerId, box) {
 
     // 마지막 도달 시 첫 번째로 돌아가기
     if (currentIdx > slideCount || currentIdx < 0) {
-      slides.classList.remove("animated");
       slides.style.left = "0px";
       currentIdx = 0;
 
       console.log("끝이니까 처음으로 돌아가자!");
-
-      slides.classList.add("animated");
     }
   }
 }
-
 export { fetchMovies, fetchMovieDetails, upcomingUrl, popularUrl, topUrl, nowUrl };
