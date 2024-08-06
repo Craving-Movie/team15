@@ -102,7 +102,7 @@ async function fetchMovieDetails(movieId) {
 // 슬라이드에 쓸 변수들
 function slider(containerId, box) {
   let slides = document.getElementById(`${containerId}`);
-  let slide = document.querySelectorAll(`#${containerId} .moviePoster`);
+  let slide = document.querySelectorAll(`#${containerId} .movieWrapper`);
   let currentIdx = 0;
   let slideCount = slide.length;
   let slideWidth = 200;
@@ -129,25 +129,14 @@ function slider(containerId, box) {
       // slides.prepend(cloneSlide);
     }
     updateWidth();
-    // setinit();
-    setTimeout(function () {
-      slides.classList.add("animated");
-    }, 100);
   }
   
   // 전체 너비를 구해서 포스터의 너비를 지정하는 함수
   function updateWidth() {
-    let currentSlides = document.querySelectorAll(`${containerId} .moviePoster`);
+    let currentSlides = document.querySelectorAll(`${containerId} .movieWrapper`);
     let newSlideCount = currentSlides.length;
     let newWidth = (slideWidth + slideMargin) * newSlideCount - slideMargin + "px";
     slides.style.width = newWidth;
-  }
-
-  // 초기 위치 잡는 함수
-  function setinit() {
-    // 왼쪽으로 움직일 거니까 '-' 붙임
-    let TranslateValue = (slideWidth + slideMargin) * slideCount;
-    slides.style.transform = "translateX(" + TranslateValue + "px)";
   }
 
   // 버튼 Event
