@@ -139,6 +139,7 @@ function slider(containerId, box) {
   // } // -여기까지
 
   // 버튼 Event
+  
   nextBtn.addEventListener("click", function () {
     console.log(currentIdx);
     moveSlide(currentIdx + 5);
