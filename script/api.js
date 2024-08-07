@@ -136,12 +136,12 @@ function slider(containerId, box) {
   // 슬라이드 이동 넓이
   let moveWidth = onedisCard * cardWidth - 200;
 
-  console.log(`디스플레이 넓이: ${display}px`);
-  console.log(`한 화면에 들어가는 카드 갯수: ${onedisCard}`);
-  console.log(`총 필요한 클릭 횟수: ${totalClick}`);
-  console.log(`나머지 카드: ${spareCard}`);
-  console.log(`슬라이드 이동 넓이: ${moveWidth}`);
-  console.log(`마지막 이동 넓이: ${spareCardWidth}`);
+  // console.log(`디스플레이 넓이: ${display}px`);
+  // console.log(`한 화면에 들어가는 카드 갯수: ${onedisCard}`);
+  // console.log(`총 필요한 클릭 횟수: ${totalClick}`);
+  // console.log(`나머지 카드: ${spareCard}`);
+  // console.log(`슬라이드 이동 넓이: ${moveWidth}`);
+  // console.log(`마지막 이동 넓이: ${spareCardWidth}`);
 
   let clickCount = 0;
 
@@ -168,7 +168,7 @@ function slider(containerId, box) {
       slides.style.left = 0;
       clickCount = 0;
     }
-    console.log(slides.style.left, clickCount);
+    // console.log(slides.style.left, clickCount);
   }
 }
 // let Slides = document.getElementById(`${containerId}`);

@@ -33,7 +33,7 @@ window.onload = async function () {
         // 일치하는 카드가 여러 장일 때
         slideBoxes.forEach((slideBox) => {
           slideBox.querySelector(".slideBtn").style.display = "none";
-          console.log(slideBox);
+          // console.log(slideBox);
           const postersInContainer = slideBox.querySelectorAll(".movieWrapper");
           let hasVisiblePoster = false;
 
