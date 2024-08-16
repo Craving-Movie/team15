@@ -26,14 +26,14 @@ function fetchMovies(url, containerId, box) {
         img.alt = movie.title;
         img.id = movie.id;
 
-        // 추가한 부분: 영화 정보 표시를 위한 div생성
+        // 영화 정보 표시할 div 생성
         const infoDiv = document.createElement("div");
-        infoDiv.className = "wrap";
+        infoDiv.className = "wrap"; // div 클래스에 이름 부여
         infoDiv.style.visibility = "hidden"; // 초기 상태를 숨김으로 설정
         infoDiv.style.opacity = "0"; // 초기 상태를 투명으로 설정
-        infoDiv.style.transition = "opacity 0.3s"; // 부드러운 전환 효과
+        infoDiv.style.transition = "opacity 0.3s"; // 투명도가 변할 때 부드러운 전환 효과
 
-        // 추가한 부분: 영화카드 마우스 오버시 나오는 영화 디테일
+        // 영화 정보가 표시될 HTML구조 설정
         infoDiv.innerHTML = `
             <h3 class="title">${movie.title}</h3>
             <div class="summary">${movie.overview}</div>
@@ -46,27 +46,27 @@ function fetchMovies(url, containerId, box) {
             </div>
         `;
 
-        // 추가한 부분: 이미지와 정보를 포함하는 컨테이너 생성
+        // 이미지와 정보를 포함하는 div 생성
         const wrapper = document.createElement("div");
-        wrapper.className = "movieWrapper";
-        wrapper.id = movie.title;
-        wrapper.appendChild(img);
-        wrapper.appendChild(infoDiv);
+        wrapper.className = "movieWrapper"; // wrapper에 클래스 이름 부여
+        wrapper.id = movie.title; // wrapper의 id값 부여
+        wrapper.appendChild(img); // wrapper에 이미지 요소 추가
+        wrapper.appendChild(infoDiv); // wrapper에 정보 div 요소 추가
 
-        // 추가한 부분: 마우스 오버 시 정보 표시
+        // wrapper에 마우스 들어갈 때 이벤트 처리
         wrapper.addEventListener("mouseenter", () => {
-          infoDiv.style.visibility = "visible";
-          infoDiv.style.opacity = "1";
-          wrapper.style.transform = "scale(1.2)";
-          wrapper.style.boxShadow = "0 0 20px rgba(0, 0, 0, 0.5)";
+          infoDiv.style.visibility = "visible"; // 정보 div의 가시성을 표시로 설정
+          infoDiv.style.opacity = "1"; // 정보 div의 투명도를 1로 설정하여 보이게 함
+          wrapper.style.transform = "scale(1.2)"; // wrapper의 크기를 확대
+          wrapper.style.boxShadow = "0 0 20px rgba(0, 0, 0, 0.5)"; // wrapper에 그림자 효과 추가
         });
 
-        // 추가한 부분: 마우스 아웃 시 정보 숨김
+        // wrapper에서 마우스가 나갈 때 이벤트 처리
         wrapper.addEventListener("mouseleave", () => {
-          infoDiv.style.visibility = "hidden";
-          infoDiv.style.opacity = "0";
-          wrapper.style.transform = "scale(1)";
-          wrapper.style.boxShadow = "none";
+          infoDiv.style.visibility = "hidden"; // 정보 div의 가시성을 숨김으로 설정
+          infoDiv.style.opacity = "0"; // 정보 div의 투명도를 0으로 설정하여 숨김
+          wrapper.style.transform = "scale(1)"; // wrapper의 크기를 원래대로 복원
+          wrapper.style.boxShadow = "none"; // wrapper의 그림자 효과 제거
         });
 
         wrapper.addEventListener("click", () => {
